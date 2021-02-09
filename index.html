@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dan Hartropp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <style>
+
+        body {
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ), url('/img/guardian.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .white {
+            color: white;
+        }
+
+    </style>
+
+
+
+  </head>
+  <body>
+
+    <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start is-flex-grow-2 is-justify-content-center">
+            <a class="navbar-item">Collections</a>
+            <a class="navbar-item">About me</a>
+            <a class="navbar-item">Get in touch</a>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary"> <strong>Instagram</strong> </a>
+                <a class="button is-light"> facebook? </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <section class="hero is-medium ">
+        <div class="hero-body">
+          <p class="title has-text-centered is-size-1 white"> Art. </p>
+          <p class="subtitle has-text-centered is-size-2 white"> Hand-coded in London.  </p>
+
+        </div>
+      </section>
+
+    
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+        });
+    });
+    }
+
+    });
+</script>
+
+</body>
+</html>
