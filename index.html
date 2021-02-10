@@ -12,14 +12,9 @@
             padding: 20px;
         }
 
-        .hero {
-            background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ), url('/img/guardian.jpg');
+        .bg-image {
             background-size: cover;
             background-position: center;
-        }
-
-        .white {
-            color: white;
         }
 
     </style>
@@ -42,8 +37,8 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start is-flex-grow-2 is-justify-content-center">
-            <a class="navbar-item">Collections</a>
-            <a class="navbar-item">About me</a>
+            <a class="navbar-item">Look</a>
+            <a class="navbar-item">Read</a>
             <a class="navbar-item">Get in touch</a>
           </div>
       
@@ -58,13 +53,88 @@
         </div>
       </nav>
 
-      <section class="hero is-medium ">
+      <section class="hero is-medium bg-image" style="background-image: url('./img/guardian.jpg');">
         <div class="hero-body">
-          <p class="title has-text-centered is-size-1 white"> Art. </p>
-          <p class="subtitle has-text-centered is-size-2 white"> Hand-coded in London.  </p>
+          <p class="title has-text-centered is-size-1 has-text-light ">
+            <span class="has-background-black-bis px-3">Art. </span></p>
+          <p class="subtitle has-text-centered is-size-2 has-text-light">
+            <span class="has-background-black-bis px-3">Hand-coded in London.  </span>  </p>
 
         </div>
       </section>
+
+      <section class="py-6">
+
+
+        <div class="tile is-ancestor">
+          <div class="tile is-vertical is-8">
+            <div class="tile">
+              <div class="tile is-parent is-vertical">
+                <article class="tile is-child box">
+                  <p class="title">Week note one</p>
+                  <p class="subtitle">Top tile</p>
+                </article>
+                <article class="tile is-child box">
+                  <p class="title">Week note two</p>
+                  <p class="subtitle">Bottom tile</p>
+                </article>
+              </div>
+              <div class="tile is-parent">
+                <article class="tile is-child box">
+                  <p class="title">Featured work</p>
+                  <p class="subtitle">With an image</p>
+                    <figure class="image is-square">
+                      <img src="https://bulma.io/images/placeholders/480x480.png">
+                    </figure>
+                  
+                </article>
+              </div>
+            </div>
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child box bg-image" style="background-image: url('/img/shapes_of_things.jpg');">
+                  <a href="https://example.com">
+                  <p class="title has-text-light"><span class="has-background-black-bis px-3">Linear thinking</span></p>
+                  <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
+                    A collection of things made from lines.</span></p></a>
+                </article>
+              
+              <article class="tile is-child box bg-image" style="background-image: url('/img/fragments.jpg');">
+                <a href="https://example.com">
+                <p class="title has-text-light"><span class="has-background-black-bis px-3">Remastered</span></p>
+                <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
+                  Standing on the shoulders of giants.</span></p></a>
+              </article>
+              <article class="tile is-child box bg-image" style="background-image: url('/img/beanz.jpg');">
+                <a href="https://example.com">
+                <p class="title has-text-light"><span class="has-background-black-bis px-3">Barcodes</span></p>
+                <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
+                  Standing on the shoulders of barcodes.</span></p></a>
+              </article>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child box">
+              <div class="content">
+                <p class="title">About this site</p>
+                <p class="subtitle">With loads of content</p>
+                <div class="content">
+                  <!-- Content -->
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer has-background-grey ">
+        <div class="content has-text-centered has-text-light">
+          <p>
+            Bulma by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          </p>
+        </div>
+      </footer>
 
     
 
