@@ -14,10 +14,38 @@
           padding: 20px;
       }
 
+      /* set width on the outer elements to center the middle bit */
+      @media screen and (min-width: 1024px) {
+      .navbar-brand, .navbar-end {
+          width: 15vw;
+        }
+      }
+
       .bg-image {
           background-size: cover;
           background-position: center;
       }
+
+      a.navbar-item::after {
+          content: attr(title);
+          font-weight: 600;
+          height: 0;
+          overflow: hidden;
+          visibility: hidden;
+      }
+
+      a.navbar-item {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      a.navbar-item:hover {
+          background-color: #fafafa;
+          font-weight: 600;
+          color: #4a4a4a;
+      }
+
+
 
       .skip-link {
         position: absolute;
@@ -45,26 +73,24 @@
       <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
             <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
           </div>
         
-          <div id="navbarBasicExample" class="navbar-menu">
+          <div id="navbar" class="navbar-menu">
             <div class="navbar-start is-flex-grow-2 is-justify-content-center">
-              <a class="navbar-item">Look</a>
-              <a class="navbar-item">Read</a>
-              <a class="navbar-item">Get in touch</a>
+              <a class="navbar-item" title="Look">Look</a>
+              <a class="navbar-item" title="Read">Read</a>
+              <a class="navbar-item" title="Get in touch">Get in touch</a>
             </div>
         
             <div class="navbar-end">
               <div class="navbar-item">
-                <div class="buttons">
-                  <a class="button is-primary"> <strong>Instagram</strong> </a>
-                  <a class="button is-light"> facebook? </a>
-                </div>
+                <a href="https://www.instagram.com/danhartropp/"><img src="/img/ig-logo-black.svg" alt="Find me on Instagram" width="36" height="36"></a>
+                <a href="https://www.facebook.com/DanHartroppArt/"><img src="/img/fb-logo-black.svg" alt="Find me on facebook" width="36" height="36"></a>
               </div>
             </div>
           </div>
@@ -84,44 +110,46 @@
       <main id="maincontent">
       <section class="p-6">
         <div class="tile is-ancestor">
-          <div class="tile is-vertical is-8">
+          <div class="tile is-vertical is-7">
             <div class="tile">
               <div class="tile is-parent is-vertical">
                 <article class="tile is-child box">
-                  <p class="title">Week note one</p>
-                  <p class="subtitle">Top tile</p>
+                  <p class="title"><span>Week note</span></p>
+                  <p class="subtitle">2021-02-12</p>
                 </article>
                 <article class="tile is-child box">
-                  <p class="title">Week note two</p>
-                  <p class="subtitle">Bottom tile</p>
+                  <p class="title"><span>Thoughts about my creative process</span></p>
+                  <p class="subtitle">2021-02-11</p>
+                  <p></p>
                 </article>
               </div>
               <div class="tile is-parent">
                 <article class="tile is-child box">
-                  <p class="title">Featured work</p>
-                  <p class="subtitle">With an image</p>
-                    <figure class="image is-square">
-                      <img src="https://bulma.io/images/placeholders/480x480.png" alt="placeholder">
+                  <p class="title"><span>Featured Piece</span></p>
+                  <p class="subtitle">The FTSE100</p>
+                  <p>This is a work by Bruegel, re-worked using on a week's worth of FTSE100 closing price data.</p>
+                    <figure class="image is-square mt-3">
+                      <img src="/img/art/bruegel_ftse100.jpg" alt="placeholder">
                     </figure>
                   
                 </article>
               </div>
             </div>
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child box" style="background-image: url('/img/shapes_of_things.jpg');">
+                <article class="tile is-child box" style="background-image: url('/img/linear_thinking.jpg');">
                   <a href="https://example.com">
                   <p class="title has-text-light"><span class="has-background-black-bis px-3">Linear thinking</span></p>
                   <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
                     A collection of things made from lines.</span></p></a>
                 </article>
               
-              <article class="tile is-child box" style="background-image: url('/img/fragments.jpg');">
+              <article class="tile is-child box" style="background-image: url('/img/remastered.jpg');">
                 <a href="https://example.com">
                 <p class="title has-text-light"><span class="has-background-black-bis px-3">Remastered</span></p>
                 <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
                   Standing on the shoulders of giants.</span></p></a>
               </article>
-              <article class="tile is-child box" style="background-image: url('/img/beanz.jpg');">
+              <article class="tile is-child box" style="background-image: url('/img/barcodes.jpg');">
                 <a href="https://example.com">
                 <p class="title has-text-light"><span class="has-background-black-bis px-3">Barcodes</span></p>
                 <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
@@ -133,27 +161,92 @@
               </article>
             </div>
           </div>
-          <div class="tile is-parent">
+          <div class="tile is-parent is-vertical">
             <article class="tile is-child box">
               <div class="content">
-                <p class="title">About this site</p>
-                <p class="subtitle">With loads of content</p>
+                <p class="title"><span>About this site</span></p>
+                <p class="subtitle">... and my creative process</p>
                 <div class="content">
-                  <!-- Content -->
+
+                  <p>This site is mostly about the art that I make, but also a bit about other things too. Take a look around - you'll find things to look at, things to read and things you can buy.</p>
+
+                  <p>My art uses digital techniques to produce pieces with a modern feel, using hand-written code to generate and manipulate vector files. This site is also hand-written - I'm typing this (and all the html, scripts, styling etc) into a code editor. In an age of plugins, frameworks and design patterns, it's quite nice to do things the long way round sometimes.</p> 
+
+                  <p>Chance plays a big part in my creative process - the art uses deliberately imprecise code to make sure I can't dictate the outcome too clearly. I give the computer somewhere to start and some basic rules to follow, then wait to be surprised by the result.</p>
+
+                  <p>Most of my pieces start with a source image, which can be as expressive as the work of an old master or as formulaic as a barcode. I use statistical techniques and randomised manipulations, adjusting parameters (and usually the algorithms themselves) many times for every piece.</p>
+
+                  <p>I then select and edit the vector images, generate high-resolution renders and have them giclée printed. I have recently started experimenting with acrylic paint, transferring the image from the digital world to the physical world by hand.</p>
+
+                  <p>You can follow my progress in my weeknotes on this site, or on instagram.</p>
+
+                  <p>Finally, get in touch. I'd love to hear from you.</p>
                 </div>
               </div>
             </article>
+            <div class="tile is-child box">
+              <p class="title"><span>My newsletter</span></p>
+              <p class="subtitle"><span>It really is worth signing up.</span></p>
+              <div class="content">
+                <p>I know, I know. But pop your email address in the box below and every once in a blue moon, I'll tell you about something interesting, offer you a special discount, or whatever. In the hierrarchy of who gets to know about things, the email list comes right behind existing customers, but ahead of instagram followers.</p> 
+                <p>So jump the queue and sign up.</p>
+                <form id="newsLetterForm" class="pt-4">
+                  <div class="field is-grouped">
+                    <div class="control is-expanded">
+                      <input type="email" name="email" class="input" placeholder="put your email address here">
+                      <p class="help is-danger errorMessage is-hidden">That's not a valid email address, please try again.</p>
+                    </div>
+                    <div class="control">
+                      <button class="button is-primary">sign up</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              
+
+            </div>
           </div>
         </div>
       </section>
     </main>
       <footer class="footer has-background-black-bis ">
+        <div class="columns">
+          <div class="column is-one-third">
+            <div class="content has-text-grey">
+              <p>
+                This site is mostly coded by hand, by me.</p> 
+                <p>But life is too short to solve the complexities of flexbox and form layout, so I'm using Bulma - a lightweight framework by <a href="https://jgthms.com" class="has-text-grey has-text-weight-semibold">Jeremy Thomas</a>. The source code uses the
+                <a href="http://opensource.org/licenses/mit-license.php" class="has-text-grey has-text-weight-semibold">MIT</a> licence. The website content, including images, are copyright me.
+              </p>
+              <p>&copy; Dan Hartropp, 2021</p>
+            </div>
+          </div>
+          <div class="column"></div>
+          <div class="column">
+            <p class="title has-text-light">Newsletter</p>
+            <p class="subtitle has-text-light">Seriously, you're missing out on loads of good stuff.</p>
+            <form name="footerForm" class="pt-4">
+              <div class="field is-grouped">
+                <div class="control is-expanded">
+                  <input class="input" type="email" name="email" type="email" placeholder="put your email address here">
+                  <p class="help is-danger errorMessage is-hidden">That's not a valid email address</p>
+                </div>
+                <div class="control">
+                  <button class="button is-primary">sign up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
         <div class="content has-text-centered has-text-light">
-          <p class="has-text-light">
-            Bulma by <a href="https://jgthms.com" class="has-text-light has-text-weight-semibold">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php" class="has-text-light has-text-weight-semibold">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="has-text-light has-text-weight-semibold">CC BY NC SA 4.0</a>.
-          </p>
+          
+          <div class="pt-6">
+            <a href="https://www.instagram.com/danhartropp/"><img src="/img/ig-logo-white.svg" alt="Find me on Instagram" width="36" height="36"></a>
+            <a href="https://www.facebook.com/DanHartroppArt/"><img src="/img/fb-logo-white.svg" alt="Find me on facebook" width="36" height="36"></a>
+          </div>
+          
+          
         </div>
       </footer>
 
@@ -162,34 +255,11 @@
 
 
 
+<!-- navbar stuff -->
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"),0);e.length>0&&e.forEach(e=>{e.addEventListener("click",()=>{const t=e.dataset.target,a=document.getElementById(t);e.classList.toggle("is-active"),a.classList.toggle("is-active")})})});</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-
-    // Add a click event on each of them
-    $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-
-        // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-
-        });
-    });
-    }
-
-    });
-</script>
 
 </body>
 </html>
