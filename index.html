@@ -1,71 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dan Hartropp</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    
+  
     <style>
 
-        body {
-            padding: 20px;
-        }
+      body {
+          padding: 20px;
+      }
 
-        .bg-image {
-            background-size: cover;
-            background-position: center;
-        }
+      .bg-image {
+          background-size: cover;
+          background-position: center;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000000;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
 
     </style>
+
+    
 
 
 
   </head>
   <body>
-
-    <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
-      
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-      
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start is-flex-grow-2 is-justify-content-center">
-            <a class="navbar-item">Look</a>
-            <a class="navbar-item">Read</a>
-            <a class="navbar-item">Get in touch</a>
+    <a class="skip-link" href="#maincontent">Skip to main content</a>
+      <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
           </div>
-      
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary"> <strong>Instagram</strong> </a>
-                <a class="button is-light"> facebook? </a>
+        
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start is-flex-grow-2 is-justify-content-center">
+              <a class="navbar-item">Look</a>
+              <a class="navbar-item">Read</a>
+              <a class="navbar-item">Get in touch</a>
+            </div>
+        
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button is-primary"> <strong>Instagram</strong> </a>
+                  <a class="button is-light"> facebook? </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <section class="hero is-medium bg-image" style="background-image: url('./img/guardian.jpg');">
-        <div class="hero-body">
-          <p class="title has-text-centered is-size-1 has-text-light ">
-            <span class="has-background-black-bis px-3">Art. </span></p>
-          <p class="subtitle has-text-centered is-size-2 has-text-light">
-            <span class="has-background-black-bis px-3">Hand-coded in London.  </span>  </p>
+        <section class="hero is-medium bg-image" style="background-image: url('./img/guardian.jpg');">
+          <div class="hero-body">
+            <p class="title has-text-centered is-size-1 has-text-light ">
+              <span class="has-background-black-bis px-3">Art. </span></p>
+            <p class="subtitle has-text-centered is-size-2 has-text-light">
+              <span class="has-background-black-bis px-3">Hand-coded in London.  </span>  </p>
 
-        </div>
-      </section>
-
-      <section class="py-6">
+          </div>
+        </section>
 
 
+      <main id="maincontent">
+      <section class="p-6">
         <div class="tile is-ancestor">
           <div class="tile is-vertical is-8">
             <div class="tile">
@@ -84,31 +101,35 @@
                   <p class="title">Featured work</p>
                   <p class="subtitle">With an image</p>
                     <figure class="image is-square">
-                      <img src="https://bulma.io/images/placeholders/480x480.png">
+                      <img src="https://bulma.io/images/placeholders/480x480.png" alt="placeholder">
                     </figure>
                   
                 </article>
               </div>
             </div>
             <div class="tile is-parent is-vertical">
-                <article class="tile is-child box bg-image" style="background-image: url('/img/shapes_of_things.jpg');">
+                <article class="tile is-child box" style="background-image: url('/img/shapes_of_things.jpg');">
                   <a href="https://example.com">
                   <p class="title has-text-light"><span class="has-background-black-bis px-3">Linear thinking</span></p>
                   <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
                     A collection of things made from lines.</span></p></a>
                 </article>
               
-              <article class="tile is-child box bg-image" style="background-image: url('/img/fragments.jpg');">
+              <article class="tile is-child box" style="background-image: url('/img/fragments.jpg');">
                 <a href="https://example.com">
                 <p class="title has-text-light"><span class="has-background-black-bis px-3">Remastered</span></p>
                 <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
                   Standing on the shoulders of giants.</span></p></a>
               </article>
-              <article class="tile is-child box bg-image" style="background-image: url('/img/beanz.jpg');">
+              <article class="tile is-child box" style="background-image: url('/img/beanz.jpg');">
                 <a href="https://example.com">
                 <p class="title has-text-light"><span class="has-background-black-bis px-3">Barcodes</span></p>
                 <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1">
-                  Standing on the shoulders of barcodes.</span></p></a>
+                        Standing on the shoulders of barcodes.</span></p>
+                 </a>
+
+
+
               </article>
             </div>
           </div>
@@ -125,13 +146,13 @@
           </div>
         </div>
       </section>
-
-      <footer class="footer has-background-grey ">
+    </main>
+      <footer class="footer has-background-black-bis ">
         <div class="content has-text-centered has-text-light">
-          <p>
-            Bulma by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          <p class="has-text-light">
+            Bulma by <a href="https://jgthms.com" class="has-text-light has-text-weight-semibold">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php" class="has-text-light has-text-weight-semibold">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" class="has-text-light has-text-weight-semibold">CC BY NC SA 4.0</a>.
           </p>
         </div>
       </footer>
