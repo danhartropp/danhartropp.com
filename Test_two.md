@@ -1,2 +1,0 @@
-Thing: one
-Things: two
