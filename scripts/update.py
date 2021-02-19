@@ -3,12 +3,12 @@ from os import listdir
 
 target = '\*\*\*main\*\*\*[\s\S]*\*\*\*endmain\*\*\*'
 
-with open('index.html') as f:
+with open('../index.html') as f:
     index_page = f.read()
     
-for page in listdir('read'):
+for page in listdir('../read'):
     print('read/' + page)
-    with open('read/' + page, 'r+') as f:
+    with open('../read/' + page, 'r+') as f:
         oldpage = f.read()
         f.seek(0)
         content = re.findall(target, oldpage)[0]
