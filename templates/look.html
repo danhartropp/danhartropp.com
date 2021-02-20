@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main id="maincontent">
+    <section>
+        <div class="container is-widescreen">
+            <div class="columns is-multiline">
+                {% for art in arts %}
+                <article class="column is-5 box m-3">
+                    <a href="{{art.url}}">
+                        <img src="/static/img/art/{{art.image}}">
+                        <p class="title is-2 has-text-centered mb-3" style="margin-top:-2.5rem;">{{art.name}}</p>
+                    </a>
+                </article>
+                {%endfor%}
+            </div>
+        </div>
+    </section>
+  </main>
+
+
+{%endblock%}

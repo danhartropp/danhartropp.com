@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+        
+<main id="maincontent">
+  <section>
+    <div class="container is-max-desktop box">
+      <h1 class="title">{{post.title}}</h1>
+      <h2 class="subtitle">{{post.subtitle or ''}}</h2>
+      <h3 class="subtitle">{{post.date}}</h3>
+      <div class="content">{{post.content|safe}}</div>
+    </div>
+  </section>
+</main>
+{%endblock%}

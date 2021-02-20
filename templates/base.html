@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dan Hartropp | Get in touch</title>
+    <title>Dan Hartropp</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/ico/favicon-16x16.png">
+    <link rel="manifest" href="/static/ico/site.webmanifest">
+    <meta  name="msapplication-config" content="/static/ico/browserconfig.xml">
+    <link rel="mask-icon" href="/static/ico/safari-pinned-tab.svg" color="#5bbad5">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     
   
@@ -63,8 +64,6 @@
           color: #4a4a4a;
       }
 
-
-
       .skip-link {
         position: absolute;
         top: -40px;
@@ -100,33 +99,22 @@
         
           <div id="navbar" class="navbar-menu">
             <div class="navbar-start is-flex-grow-2 is-justify-content-center">
-              <a class="navbar-item" title="Look">Look</a>
-              <a class="navbar-item" title="Read">Read</a>
-              <a class="navbar-item" title="Get in touch">Get in touch</a>
+              <a class="navbar-item" title="Look" href="/look">Look</a>
+              <a class="navbar-item" title="Read" href="/read">Read</a>
+              <a class="navbar-item" title="Get in touch" href="/contact">Get in touch</a>
             </div>
         
             <div class="navbar-end">
               <div class="navbar-item">
-                <a href="https://www.instagram.com/danhartropp/"><img src="/img/ig-logo-black.svg" alt="Find me on Instagram" width="36" height="36"></a>
-                <a href="https://www.facebook.com/DanHartroppArt/"><img src="/img/fb-logo-black.svg" alt="Find me on facebook" width="36" height="36"></a>
+                <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-black.svg" alt="Find me on Instagram" width="36" height="36"></a>
+                <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-black.svg" alt="Find me on facebook" width="36" height="36"></a>
               </div>
             </div>
           </div>
         </nav>
+        
+        {%block content %}{%endblock%}
 
-      <main id="maincontent">
-      <section>
-        <div class="container is-max-widescreen box">
-          <h1 class="title">Bye bye shopify</h1>
-          <h2 class="subtitle">Weeknote: 2021-02-12</h2>
-          <div class="content">
-            <p>I spent days setting up a shopify site, but almost immediately it felt wrong and its time to move on. Don't get me wrong - it's a really impressive system and I reckon I'll be back at some point, but it doesn't work for me right now.</p>
-            <p>Almost immediately, it felt like i was setting up a high-volume, highly-optimised shopfront. It felt impersonal and a little too slick. It started to take over my thinking - I was spending too much time thinking about facebook ad ROI and discounting strategies and not enough time developing my creative practice. If I ever get to the point where I really need a streamlined ad-to-print dropshipped pipeline, then shopify will be my goto platform. But that's not right for me, right now.</p>
-            <p>So here we are, coding up another website by hand. I (mostly) enjoy this process. There's a sense of satisfaction that comes from having done it myself and an even bigger sense of satisfaction that I get to do it <b>exactly</b> my way.</p>
-          </div>
-        </div>
-      </section>
-    </main>
       <footer class="footer has-background-black-bis mt-6">
         <div class="columns">
           <div class="column is-one-third">
@@ -160,8 +148,8 @@
         <div class="content has-text-centered has-text-light">
           
           <div class="pt-6">
-            <a href="https://www.instagram.com/danhartropp/"><img src="/img/ig-logo-white.svg" alt="Find me on Instagram" width="36" height="36"></a>
-            <a href="https://www.facebook.com/DanHartroppArt/"><img src="/img/fb-logo-white.svg" alt="Find me on facebook" width="36" height="36"></a>
+            <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-white.svg" alt="Find me on Instagram" width="36" height="36"></a>
+            <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-white.svg" alt="Find me on facebook" width="36" height="36"></a>
           </div>
           
           
