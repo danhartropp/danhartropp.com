@@ -10,7 +10,7 @@ def get_posts():
     parsed_posts = []
     for post in posts:
         parsed_post = frontmatter.load('content/read/' + post)
-        parsed_post['url'] = url_for('post', path=post.replace('.md',''))
+        parsed_post['url'] = url_for('post', path=post.replace('.md','.html'))
         if 'excerpt' not in parsed_post.keys():
             parsed_post.excerpt = parsed_post.content.split('\n')[0]
         parsed_posts.append(parsed_post)
@@ -20,9 +20,10 @@ def get_posts():
 def get_arts(path):
     print (path)
     art_files = os.listdir('content/look/' + path)
+    art_files = [x for x in art_files if x != 'index.md']
     arts = [frontmatter.load('content/look/' + path + '/' + art) for art in art_files]
     for idx, art in enumerate(arts):
-        art['url'] = url_for('art', path=path + '/' + art_files[idx].replace('.md',''))
+        art['url'] = url_for('art', path=path + '/' + art_files[idx].replace('.md','.html'))
     return arts
 
 @app.route('/')
@@ -30,31 +31,37 @@ def index():
     featured_posts = get_posts()[:2]
     return render_template('index.html', featured_posts=featured_posts)
 
-@app.route('/contact')
+@app.route('/contact.html')
 def contact():
     return render_template('contact.html')
 
-@app.route('/read')
+@app.route('/read/index.html')
 def read_index():
     posts = get_posts()
-    return render_template('read.html',posts=parsed_posts)
+    return render_template('read.html',posts=posts)
 
 @app.route('/read/<path:path>')
 def post(path):
-    post = frontmatter.load('content/read/' + path + '.md')
+    post = frontmatter.load('content/read/' + path.replace('.html','.md'))
     post.content = markdown.markdown(post.content)
     return render_template('post.html',post=post)
+
+@app.route('/look/index.html')
+def look_index():
+    return render_template('look.html')
 
 @app.route('/look/<path:path>')
 def art(path):
 
     #first check whether we want an index page 
-    if len(path.split('/')) == 1:
-        arts = get_arts(path.replace('/',''))
-        return render_template('look.html', arts=arts)
+    if path.split('/')[-1] == 'index.html':
+        arts = get_arts(path.split('/')[0])
+        series = frontmatter.load('content/look/' + path.replace('.html','.md'))
+        series.content = markdown.markdown(series.content)
+        return render_template('look_series.html', series=series, arts=arts)
 
     #Or whether we're looking for an individual piece page
-    art = frontmatter.load('content/look/' + path + '.md')
+    art = frontmatter.load('content/look/' + path.replace('.html','.md'))
     art.content = markdown.markdown(art.content)
     return render_template('art.html',art=art)
 

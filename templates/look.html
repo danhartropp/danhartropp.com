@@ -5,18 +5,42 @@
     <section>
         <div class="container is-widescreen">
             <div class="columns is-multiline">
-                {% for art in arts %}
-                <article class="column is-5 box m-3">
-                    <a href="{{art.url}}">
-                        <img src="/static/img/art/{{art.image}}">
-                        <p class="title is-2 has-text-centered mb-3" style="margin-top:-2.5rem;">{{art.name}}</p>
+
+                <article class="column is-8 mb-6">
+                    <h1 class="title">Art things</h1>
+                    <div class="content">
+                        <p>I group most of my art things in to collections, or series. Click the names of each series below to explore.</p>
+                        <p>Everything I make gets posted to <a href="https://www.instagram.com/danhartropp/">Instagram</a>, some of it makes it on to this site. </p>
+                        <p>Giclée prints (on paper or canvas) are available for any of the pieces on this site. Prices start at around £40 for a 12 inch square print on textured paper. I can also arrange for museum-quality framing and/or mounting.</p>
+                        <p><a href="/contact.html">Get in touch</a> if you're interested in owning your own piece of hand-coded art. </p>
+                    </div>
+                </article>
+
+                <article class="column is-8 box m-3" style="height:20vh;background-image: url('/static/img/linear_thinking.jpg');">
+                    <a href="{{url_for('art', path='linear-thinking/index.html')}}">
+                    <p class="title has-text-light"><span class="has-background-black-bis px-3">Linear thinking</span></p>
+                    <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1 padded-multiline">
+                        A collection of things made from lines.</span></p></a>
+                </article>
+            
+                <article class="column is-8 box m-3" style="height:20vh;background-image: url('/static/img/remastered.jpg');">
+                    <a href="{{url_for('art', path='remastered/index.html')}}">
+                    <p class="title has-text-light"><span class="has-background-black-bis px-3">Remastered</span></p>
+                    <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1 padded-multiline">
+                        Standing on the shoulders of giants.</span></p></a>
+                </article>
+
+                <article class="column is-8 box m-3" style="height:20vh;background-image: url('/static/img/barcodes.jpg');">
+                    <a href="{{url_for('art', path='barcoded/index.html')}}">
+                    <p class="title has-text-light"><span class="has-background-black-bis px-3">Barcoded</span></p>
+                    <p class="subtitle has-text-light"><span class="has-background-black-bis px-3 pb-1 padded-multiline">
+                            Standing on the shoulders of barcodes.</span></p>
                     </a>
                 </article>
-                {%endfor%}
+
             </div>
         </div>
     </section>
-  </main>
-
+</main>
 
 {%endblock%}

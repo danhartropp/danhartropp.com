@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dan Hartropp</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/ico/favicon-16x16.png">
+    <link rel="manifest" href="/static/ico/site.webmanifest">
+    <meta  name="msapplication-config" content="/static/ico/browserconfig.xml">
+    <link rel="mask-icon" href="/static/ico/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    
+  
+    <style>
+
+      body {
+          padding: 20px;
+      }
+
+      /* set width on the outer elements to center the middle bit */
+      @media screen and (min-width: 1024px) {
+      .navbar-brand, .navbar-end {
+          width: 15vw;
+        }
+      }
+
+      @media screen and (max-width: 1023px){
+        .container.is-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      }
+
+      .padded-multiline {         
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+
+
+      .bg-image {
+          background-size: cover;
+          background-position: center;
+      }
+
+      a.navbar-item::after {
+          content: attr(title);
+          font-weight: 600;
+          height: 0;
+          overflow: hidden;
+          visibility: hidden;
+      }
+
+      a.navbar-item {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      a.navbar-item:hover {
+          background-color: #fafafa;
+          font-weight: 600;
+          color: #4a4a4a;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000000;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+
+    </style>
+
+    
+
+
+
+  </head>
+  <body>
+    <a class="skip-link" href="#maincontent">Skip to main content</a>
+      <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+        
+          <div id="navbar" class="navbar-menu">
+            <div class="navbar-start is-flex-grow-2 is-justify-content-center">
+              <a class="navbar-item" title="Look" href="/look/index.html">Look</a>
+              <a class="navbar-item" title="Read" href="/read/index.html">Read</a>
+              <a class="navbar-item" title="Get in touch" href="/contact.html">Get in touch</a>
+            </div>
+        
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-black.svg" alt="Find me on Instagram" width="36" height="36"></a>
+                <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-black.svg" alt="Find me on facebook" width="36" height="36"></a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        
+        
+
+<main id="maincontent">
+    <section>
+        <div class="container is-widescreen">
+            <div class="columns is-multiline">
+                <article class="column box">
+                    <h1 class="title is-2 has-text-centered mb-1">Chocolate digestives</h1>
+                    <figure class="image">
+                        <img src="/static/img/art/digestives.jpg">
+                    </figure>
+                </article>
+            </div>
+        </div>
+    </section>
+  </main>
+
+
+
+
+      <footer class="footer has-background-black-bis mt-6">
+        <div class="columns">
+          <div class="column is-one-third">
+            <div class="content has-text-grey">
+              <p>
+                This site is mostly coded by hand, by me.</p> 
+                <p>But life is too short to solve the complexities of flexbox and form layout, so I'm using Bulma - a lightweight framework by <a href="https://jgthms.com" class="has-text-grey has-text-weight-semibold">Jeremy Thomas</a>. The source code uses the
+                <a href="http://opensource.org/licenses/mit-license.php" class="has-text-grey has-text-weight-semibold">MIT</a> licence. The website content, including images, are copyright me.
+              </p>
+              <p>&copy; 2021 Dan Hartropp</p>
+            </div>
+          </div>
+          <div class="column"></div>
+          <div class="column">
+            <p class="title has-text-light">Newsletter</p>
+            <p class="subtitle has-text-light">Seriously, you're missing out on loads of good stuff.</p>
+            <form name="newsLetterFooterForm" class="pt-4" data-netlify="true">
+              <div class="field is-grouped">
+                <div class="control is-expanded">
+                  <input class="input" type="email" name="email" type="email" placeholder="put your email address here">
+                  <p class="help is-danger errorMessage is-hidden">That's not a valid email address</p>
+                </div>
+                <div class="control">
+                  <button class="button is-primary">sign up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="content has-text-centered has-text-light">
+          
+          <div class="pt-6">
+            <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-white.svg" alt="Find me on Instagram" width="36" height="36"></a>
+            <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-white.svg" alt="Find me on facebook" width="36" height="36"></a>
+          </div>
+          
+          
+        </div>
+      </footer>
+
+    
+
+
+
+
+<!-- navbar stuff -->
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"),0);e.length>0&&e.forEach(e=>{e.addEventListener("click",()=>{const t=e.dataset.target,a=document.getElementById(t);e.classList.toggle("is-active"),a.classList.toggle("is-active")})})});</script>
+
+
+
+
+</body>
+</html>
