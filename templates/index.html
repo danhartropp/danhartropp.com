@@ -35,12 +35,14 @@
                 </div>
                 <div class="tile is-parent">
                   <article class="tile is-child box">
-                    <p class="title"><span>Featured Piece</span></p>
-                    <p class="subtitle">The FTSE100</p>
-                    <p>This is a work by Bruegel, re-worked using on a week's worth of FTSE100 closing price data.</p>
+                    <a href="{{featured_piece.url}}">
+                    <p class="title"><span>{{featured_piece.title}}</span></p>
+                    <p class="subtitle">{{featured_piece.subtitle}}</p>
+                    <div class="content has-text-dark">{{featured_piece.content|safe}}</div>
                       <figure class="image is-square mt-3">
-                        <img src="/static/img/art/bruegel_ftse100.jpg" alt="placeholder">
+                        <img src="/static/img/{{featured_piece.image}}" alt="{{featured_piece.subtitle}}">
                       </figure>
+                    </a>
                     
                   </article>
                 </div>

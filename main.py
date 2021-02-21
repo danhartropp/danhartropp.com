@@ -29,7 +29,9 @@ def get_arts(path):
 @app.route('/')
 def index():
     featured_posts = get_posts()[:2]
-    return render_template('index.html', featured_posts=featured_posts)
+    featured_piece = frontmatter.load('content/featured_piece.md')
+    featured_piece.content = markdown.markdown(featured_piece.content)
+    return render_template('index.html', featured_posts=featured_posts, featured_piece=featured_piece)
 
 @app.route('/contact.html')
 def contact():
