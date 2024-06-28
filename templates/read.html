@@ -3,19 +3,30 @@
 
 <main id="maincontent">
     <section>
-        <div class="container is-widescreen">
-            <div class="columns is-multiline">
+        
+        <div class="container is-widescreen has-background-light pt-6">
+            <div class="columns is-centered my-6">
+                <div class="column is-8 has-text-centered py-6">
+                    <h1 class="title has-text-primary">Some thoughts</h1>
+                    <p class="subtitle has-text-grey-light">
+                        In no particular order
+                    </p>
+                    <p>Some thoughts loosely based on the theme of technical management in a startup environment. Don't take any of this as hard-and-fast advice - it's based on my personal experience and comes with the caveats that implies. </p>
+                </div>
+            </div>
+            
+            <div class="columns is-multiline is-justify-content-center">
                 {% for post in posts %}
-                <article class="column is-5 box m-3">
-                    <h1 class="title">{{post.title}}</h1>
+                {% set size = range(3,6)|random %}
+                <article class="column is-{{size}} box m-3">
+                    <h1 class="title has-text-primary">{{post.title}}</h1>
 
-                    {%if post.subtitle != None %}
-                    <p class="subtitle">{{post.subtitle}}<br>{{post.date}}</p>
-                    {%else%}
-                    <p class="subtitle">{{post.date}}</p>
-                    {%endif%}
+                    <p class="subtitle has-text-grey-light">
+                        {{post.subtitle or ''}}<br>{{post.date or ''}}
+                    </p>
+                    <p class="subtitle has-text-grey-light">{{post.date or ''}}</p>
                     
-                    <p>{{post.excerpt|truncate(250)}}</p>
+                    <p>{{post.excerpt|truncate(size*75)|safe}}</p>
                     <p class="mt-3"><a href="{{post.url}}">read more ...</a></p>
                 </article>
                 {%endfor%}

@@ -123,23 +123,33 @@
         </nav>
         
         
-
+        
 <main id="maincontent">
-    <section>
-        <div class="container is-widescreen">
-            <div class="columns is-multiline">
-                <article class="column box">
-                    <h1 class="title is-2 has-text-centered mb-1">Lattice #1</h1>
-                    <figure class="image">
-                        <img src="/static/img/art/lattice-1.jpg">
-                    </figure>
-                </article>
-            </div>
-        </div>
-    </section>
-  </main>
-
-
+  <section class="has-background-light">
+    <div class="container is-max-desktop pt-6">
+      <div class="box mt-6">
+        <h1 class="title has-text-primary">Certification and data protection</h1>
+        <h2 class="subtitle has-text-primary">Tedious box ticking or vital back-covering?</h2>
+        <h3 class="subtitle"></h3>
+        <div class="content"><p>Aside from internal documentation (which is very important) there are two main kinds of documentation that require attention from the tech lead in a startuppy environment.</p>
+<p>NOTE: This is based on UK experience ... it may not apply in other places. It is also not legal advice and you should not reply on it!</p>
+<p>The first kind of documentation is what I'll loosely call "quality certification". These are only likely to be of interest to B2B firms - and even then only if you're selling to serious corporate/enterprise outfits with dedicated purchasing departments. At the top end (and less likely to be relevant for a startup) are the ISO accreditations e.g. ISO 9001 (Quality) and ISO 27001 (Data Security). There are also a bunch of certifications you can get that designed to reassure potential clients that you'll be careful with their data. These include things like "Cyber Essentials" (applicable for most firms) and PCI-DSS (for those handling credit card details).</p>
+<p>I'm not a fintech expert, but if you're handling card payments you should work out for yourself which bits of PCI-DSS apply to you and what you should do about it - it looks like a total pain and probably something you should just outsource to <a href="https://stripe.com/gb/guides/pci-compliance">stripe</a>.</p>
+<p>The other certifications only ever seem to come up in tender/qualification documents that have been written by purchasing teams. Over the years, I've been surprised at how often I've been asked whether my firm has these certifications, how often I've said "no" and how little anyone has cared. My strong impression is that the purchasing team want to be able to say they've asked the question, but the budget holder doesn't really care about the answer. That said, I've always been able to tell a compelling story about the security and resilience measures in place, even without a certificate.</p>
+<p>My personal view about these schemes is that they are based on sound principles, but the fact you've got a certificate doesn't mean you've applied those principles well. You may have a comprehensive risk and mitigation strategy written down and refresh it every quarter, but if you've misjudged a risk or repeatedly fail to mitigate it, then the register isn't much use.</p>
+<p>Your mileage may vary of course ... and if having certification is important for your clients, then you'll just need to suck it up and get certified. There are lots of firms that can help with the process and provide templates to make it all easier.</p>
+<p>Which brings us on to data security and privacy. This is a trickier area, not least because it concerns the law, as opposed to contractual requirements (although contracts in this space are important ... see below). Data security and privacy are worth taking seriously for their own sake ... careless handling of sensitive information has the potential to make life very unpleasant for some people and I don't think that's a responsibility that should be taken lightly.</p>
+<p>It is almost certainly prudent to get some legal advice in this area - and get contracts and T&amp;C documents drafted by a professional <em>who understands your business</em>. But if something goes wrong, having a contract that's been written by a lawyer isn't a defence in itself - what that contract says will become vitally important. It therefore pays to understand this topic yourself, at least at a high level. The good news is if you're in the UK is that there is some really good (if lengthy) guidance on the <a href="https://ico.org.uk/for-organisations/advice-for-small-organisations/">ICO website</a>.</p>
+<p>What it basically boils down to is this ... you need to know what data you're holding, why you're holding it, what you plan to do with it and who is responsible for it. You then need to make sure you've got a lawful basis for holding it (i.e. permission) and that you've taken sensible precautions to keep it secure. You need to be particularly careful if you are holding (anywhere on systems under your control) data about people's race, religion, political opinions, trade union membership, health, biometrics, sex life or sexual orientation. See the relevant bits of the ICO website for more information. There are separate requirements that relate to marketing activity, particularly around direct marketing aimed at the public. Anyone that you are holding information about has a right to see that information - and there is a requirement for most organisations to register with the ICO.</p>
+<p>The requirements are also a bit different depending on whether you are a "data controller" or a "data processor" - the former is responsible for how the data is used, the latter just processes it under instruction. There's a good chance your firm will be both - a controller of your own information and a processor of your clients' information. If that's the case, then make sure your contract is clear about who is responsible for what - ideally make them responsible for their own information as far as possible. Again, this is particularly important if clients are storing sensitive personal information on your systems - and if you're not set up to secure that kind of data, make sure the contract is clear that they shouldn't store it on your systems!</p>
+<p>This can all get quite complicated quite quickly, but a good starting point is the <a href="https://ico.org.uk/for-organisations/advice-for-small-organisations/checklists/data-protection-self-assessment/">ICO checklist for small organisations</a>. Start there and then speak to a lawyer once you've worked out the sort of questions you want them to answer.</p></div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <p><a href="/read/index.html"><-- return to index</a></p>
+    </div>
+  </section>
+</main>
 
 
       <footer class="footer has-background-black-bis mt-6">

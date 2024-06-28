@@ -123,23 +123,36 @@
         </nav>
         
         
-
+        
 <main id="maincontent">
-    <section>
-        <div class="container is-widescreen">
-            <div class="columns is-multiline">
-                <article class="column box">
-                    <h1 class="title is-2 has-text-centered mb-1">Lattice #1</h1>
-                    <figure class="image">
-                        <img src="/static/img/art/lattice-1.jpg">
-                    </figure>
-                </article>
-            </div>
-        </div>
-    </section>
-  </main>
-
-
+  <section class="has-background-light">
+    <div class="container is-max-desktop pt-6">
+      <div class="box mt-6">
+        <h1 class="title has-text-primary">Testing</h1>
+        <h2 class="subtitle has-text-primary">You can have too much of a good thing</h2>
+        <h3 class="subtitle"></h3>
+        <div class="content"><p>Before any code goes into production, a set of automated tests should be written and those tests should all pass. Where appropriate (e.g. front-end changes) there should also be a manual check that things work as expected and look right on a range of screen sizes. Where code interacts with existing code or the data layer, the tests for those should also all pass. If the tests are no longer relevant, they should be rewritten.</p>
+<p>So far so simple.</p>
+<p>Having tests that pass is one thing, but knowing you've got the <em>right</em> tests is another. I take a somewhat pragmatic but rigid approach to this. The bare minimum level of testing as as follows ...</p>
+<ol>
+<li>Aim for at least 95% code coverage. In the real world, there are always weird edge cases that need to be accommodated and are very hard (or slow) to test reliably - it isn't always worth writing tests for these. If you can explain in a one-line comment why a specific section of code doesn't need testing, then it's OK to skip it. But make that section of code as small as possible - a couple of lines is about right.</li>
+<li>As a minimum, have test cases for a) the happy path, b) handling the most likely failure path (probably arising from dodgy user data) and c) any bugs that have arisen in production.</li>
+<li>Unit test and mock everything that it is sensible to unit test. For instance, anything in utils files and the database access layer. Run these tests whenever the relevant files are changed, for <strong>any</strong> reason.</li>
+<li>End to end test everything. Tests should use a copy of the live database in an environment that is as close to production as possible.</li>
+<li>Have tests that enforce a data schema across the whole codebase. These don't need to hit the database directly, but should confirm strict typing ... if my code expects a field to be a datetime and yours expects a string, the test should fail. Run these tests for the whole project when the data schema changes for <strong>any</strong> reason.</li>
+<li>Tests should be quick to run. Don't make me wait more than a minute for the whole suite to run. If it's tricky to achieve this while running end to end tests in a close-to-live environment, then refactor the code or the whole architecture to make it work.</li>
+<li>Follow a CI/CD process - but keep it as simple as possible. In a small team, a complex CI/CD process can add unhelpful overhead where a simple code review and approval process would have been fine.</li>
+</ol>
+<p>The bottom line is that you're always going to find bugs in production, so there's little point in writing hundreds of tests cases for every scenario you can think of. But do test every happy-path scenario because that means you reduce the risk of putting code into production that breaks something else.</p>
+<p>A quick word about load testing ...</p>
+<p>Periodically (and whenever significant architectural changes are made) it's worth load testing a close-to-live environment to destruction. There are good automated tools for this - put some limits on your auto-scaler and find out how much traffic your system can handle - and where the bottlenecks are. This is useful for a) those times when you get a massive spike in legitimate traffic and b) estimating your future costs given assumptions about growth and traffic.</p></div>
+      </div>
+    </div>
+    <div class="container is-max-desktop">
+      <p><a href="/read/index.html"><-- return to index</a></p>
+    </div>
+  </section>
+</main>
 
 
       <footer class="footer has-background-black-bis mt-6">
