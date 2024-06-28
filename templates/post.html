@@ -4,10 +4,13 @@
 <main id="maincontent">
   <section>
     <div class="container is-max-desktop box">
-      <h1 class="title">{{post.title}}</h1>
-      <h2 class="subtitle">{{post.subtitle or ''}}</h2>
-      <h3 class="subtitle">{{post.date}}</h3>
+      <h1 class="title has-text-primary">{{post.title}}</h1>
+      <h2 class="subtitle has-text-primary">{{post.subtitle or ''}}</h2>
+      <h3 class="subtitle">{{post.date or ''}}</h3>
       <div class="content">{{post.content|safe}}</div>
+    </div>
+    <div class="container is-max-desktop">
+      <p><a href="/read/index.html"><-- return to index</a></p>
     </div>
   </section>
 </main>

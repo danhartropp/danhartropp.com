@@ -9,11 +9,8 @@
                 <article class="column is-5 box m-3">
                     <h1 class="title">{{post.title}}</h1>
 
-                    {%if post.subtitle != None %}
-                    <p class="subtitle">{{post.subtitle}}<br>{{post.date}}</p>
-                    {%else%}
-                    <p class="subtitle">{{post.date}}</p>
-                    {%endif%}
+                    <p class="subtitle">{{post.subtitle or ''}}<br>{{post.date or ''}}</p>
+                    <p class="subtitle">{{post.date or ''}}</p>
                     
                     <p>{{post.excerpt|truncate(250)}}</p>
                     <p class="mt-3"><a href="{{post.url}}">read more ...</a></p>

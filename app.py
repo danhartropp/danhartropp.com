@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 import frontmatter
 import markdown
+from datetime import datetime
 
 app = Flask(__name__, static_folder='static')
 
@@ -14,7 +15,9 @@ def get_posts():
         if 'excerpt' not in parsed_post.keys():
             parsed_post.excerpt = parsed_post.content.split('\n')[0]
         parsed_posts.append(parsed_post)
-    parsed_posts.sort(key = lambda x: x['date'], reverse=True)
+    
+    today = datetime.now().date() # handle missing dates in the sort
+    parsed_posts.sort(key = lambda x: x['date'] or today, reverse=True)
     return parsed_posts
 
 def get_arts(path):
@@ -36,6 +39,10 @@ def index():
 @app.route('/contact.html')
 def contact():
     return render_template('contact.html')
+
+@app.route('/read/')
+def read_redirect():
+    return redirect(url_for('read_index'))
 
 @app.route('/read/index.html')
 def read_index():
