@@ -5,6 +5,8 @@ import markdown
 from datetime import datetime
 
 app = Flask(__name__, static_folder='static')
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['DEBUG'] = True
 
 def get_posts():
     posts = os.listdir('content/read/')
@@ -12,8 +14,9 @@ def get_posts():
     for post in posts:
         parsed_post = frontmatter.load('content/read/' + post)
         parsed_post['url'] = url_for('post', path=post.replace('.md','.html'))
+        parsed_post.content = markdown.markdown(parsed_post.content)
         if 'excerpt' not in parsed_post.keys():
-            parsed_post.excerpt = parsed_post.content.split('\n')[0]
+            parsed_post['excerpt'] = parsed_post.content.split('\n')[0]
         parsed_posts.append(parsed_post)
     
     today = datetime.now().date() # handle missing dates in the sort

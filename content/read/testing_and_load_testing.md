@@ -1,5 +1,5 @@
 ---
-title: Testing (and load testing)
+title: Testing
 subtitle: You can have too much of a good thing
 date:
 ---

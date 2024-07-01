@@ -123,23 +123,29 @@
         </nav>
         
         
-
+        
 <main id="maincontent">
-    <section>
-        <div class="container is-widescreen">
-            <div class="columns is-multiline">
-                <article class="column box">
-                    <h1 class="title is-2 has-text-centered mb-1">With glasses</h1>
-                    <figure class="image">
-                        <img src="/static/img/art/with-glasses.jpg">
-                    </figure>
-                </article>
-            </div>
-        </div>
-    </section>
-  </main>
-
-
+  <section>
+    <div class="container is-max-desktop box">
+      <h1 class="title has-text-primary">Refactor for simplicity</h1>
+      <h2 class="subtitle has-text-primary">By simplicity, I mostly mean readability</h2>
+      <h3 class="subtitle"></h3>
+      <div class="content"><p>For those that aren't familiar, <strong>refactoring</strong> is like tidying up your code. It’s the process of restructuring existing code without changing its external behaviour. The goal is to make your code simpler, cleaner, and more readable. This can have a huge impact on the maintainability and scalability of your software. Programmers (at least the good ones) spend quite a lot of time refactoring their code ... and that's a good thing.</p>
+<p>But it's not quite that simple.</p>
+<p>There are often competing goals in play. The process of refactoring code often throws up opportunities to make it run faster - which is a good thing and can reduce running costs. But if this comes at the cost of greater complexity or reduced readability it's probably not worth doing.</p>
+<p>Let's take the example of caching. Ignoring for a moment that caching is famously one of the <em>hard things</em> in computer science, it's a common way to speed up software, by reusing common bits of data rather than fetching or calculating them every time they are needed. This saves time, which means more things can be done in a given period and fewer CPU cycles are needed. But in order to implement caching, more code needs to be written and more tests are required to make sure the code is working properly. Testing a caching mechanism is a little tricky as there needs to be a way of a) making sure the data is cached properly and b) making sure the code still works when the data isn't cached. This doesn't just apply when the cache is being set up - the next developer who comes along is going to have to understand ow the caching works - which is going to take some time. It's probably also a good idea to document the caching mechanism - and the problem it's trying to solve - in case a future developer gets frustrated and deletes it. It <strong>might</strong> be worth doing this kind of refactoring if the overall cost saving from increased performance outweighs the cost of increased developer time - it's definitely worth doing the calculation first!</p>
+<p>The other side of this coin is refactoring for readability.</p>
+<p>Given the choice, I would much rather be presented with code that is readable - even if it doesn't work. This sometimes takes people by surprise, as they assume that the bare-minimum standard for code is that it should work. Which is true, for code that makes it into production. Although there will always be hidden bugs and edge cases, so may it's more accurate to say it's <em>mostly</em> true.</p>
+<p>But before code makes it into production, at least two people should work on it - the person that wrote it and the person that reviews it. Reviewing readable code can be a very quick process, bur reviewing poorly written code can take a very long time. It's also quicker to find and squash bugs in code that is readable ... and this is time that really matters once the code is in production.</p>
+<p>Determining how "readable" code is can be something of a subjective exercise. What makes sense to me may not make sense to you. The most important thing is consistency. Things should be where I expect to find them and formatted in a way that my eye expects to see. In short, follow the style guide. You have got a style guide, haven't you? Things should be named sensibly and consistently (noting that this is the other <em>hard thing</em> in computer science) - they should describe the reality of their purpose, variables should be nouns and functions should be verbs. Get those things right and most code is self-documenting. It should always be clear from the code itself <em>what</em> is happening - but if it isn't clear <em>why</em> that thing is necessary then it might be worth adding a short comment.</p>
+<p>Opinions vary about the correct level of abstraction and how much repetition is acceptable. My view is that it should be possible to understand any individual logical unit of code based only on what fits on one screen of text. Utility functions are great and can reduce complexity, but only if the way they work is obvious from their name ... otherwise each one adds more cognitive load as the reader has to dig further and further into the code to understand what's happening. Certainly, typing the same thing out twice is a good indicator that you should consider an abstraction, but I don't treat it as a hard rule. Again, the most important thing is to be consistent in approach so the person who has to read the code in three months' time (that person could well be you) can make sense of it quickly if they are familiar with the overall codebase.</p>
+<p>In summary, when refactoring (and you should refactor often) consider readability first, then overall simplicity, then performance if absolutely necessary.</p></div>
+    </div>
+    <div class="container is-max-desktop">
+      <p><a href="/read/index.html"><-- return to index</a></p>
+    </div>
+  </section>
+</main>
 
 
       <footer class="footer has-background-black-bis mt-6">

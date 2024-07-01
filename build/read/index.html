@@ -11,14 +11,10 @@
     <link rel="manifest" href="/static/ico/site.webmanifest">
     <meta  name="msapplication-config" content="/static/ico/browserconfig.xml">
     <link rel="mask-icon" href="/static/ico/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     
   
     <style>
-
-      body {
-          padding: 20px;
-      }
 
       /* set width on the outer elements to center the middle bit */
       @media screen and (min-width: 1024px) {
@@ -34,13 +30,7 @@
       }
       }
 
-      .padded-multiline {         
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-      }
-
-
-      .bg-image {
+      .hero {
           background-size: cover;
           background-position: center;
       }
@@ -78,18 +68,29 @@
         top: 0;
       }
 
+      .divlink {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-decoration: none; /* No underlines on the link */
+        z-index: 10; /* Places the link above everything else in the div */
+        background-color: #FFF; /* Fix to make div clickable in IE */
+        opacity: 0; /* Fix to make div clickable in IE */
+        filter: alpha(opacity=1); /* Fix to make div clickable in IE */
+      }
+
     </style>
-
-    
-
 
 
   </head>
-  <body>
+
+  <body class="has-navbar-fixed-top">
     <a class="skip-link" href="#maincontent">Skip to main content</a>
-      <nav class="navbar pb-6" role="navigation" aria-label="main navigation">
-          <div class="navbar-brand">
-            <a class="navbar-item is-size-3 has-text-weight-bold" href="https://www.danhartropp.com">DAN HARTROPP</a>
+      <nav class="navbar is-fixed-top pb-6" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand has-text-primary">
+            <a class="navbar-item is-size-3 has-text-weight-bold" href="/">DAN HARTROPP</a>
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -99,15 +100,23 @@
         
           <div id="navbar" class="navbar-menu">
             <div class="navbar-start is-flex-grow-2 is-justify-content-center">
-              <a class="navbar-item" title="Look" href="/look/index.html">Look</a>
-              <a class="navbar-item" title="Read" href="/read/index.html">Read</a>
-              <a class="navbar-item" title="Get in touch" href="/contact.html">Get in touch</a>
+              <a class="navbar-item is-size-4 has-text-primary" title="Read" href="/read/index.html">read</a>
+              <a class="navbar-item is-size-4 has-text-primary" title="Look" href="/look/index.html">look</a>
+              <a class="navbar-item is-size-4 has-text-primary" title="Get in touch" href="/contact.html">get in touch</a>
             </div>
         
             <div class="navbar-end">
               <div class="navbar-item">
-                <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-black.svg" alt="Find me on Instagram" width="36" height="36"></a>
-                <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-black.svg" alt="Find me on facebook" width="36" height="36"></a>
+                <a class="px-1" style="color:var(--bulma-navbar-h)" href="https://www.instagram.com/danhartropp/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                  </svg>
+                </a>
+                <a class="px-1" style="color:var(--bulma-navbar-h)" href="https://www.linkedin.com/in/dan-hartropp-432082ba/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -117,40 +126,120 @@
 
 <main id="maincontent">
     <section>
+        
         <div class="container is-widescreen">
-            <div class="columns is-multiline">
+            <div class="columns is-centered my-6">
+                <div class="column is-8 has-text-centered pb-6">
+                    <h1 class="title has-text-primary">Some thoughts</h1>
+                    <p class="subtitle">In no particular order</p>
+                    <p>Some thoughts loosely based on the theme of technical management in a startup environment. Don't take any of this as hard-and-fast advice - it's based on my personal experience and comes with the caveats that implies. </p>
+                </div>
+            </div>
+            
+            <div class="columns is-multiline is-justify-content-center">
                 
-                <article class="column is-5 box m-3">
-                    <h1 class="title">Learn to say no</h1>
+                
+                <article class="column is-3 box m-3">
+                    <h1 class="title has-text-primary">Building a team</h1>
 
+                    <p class="subtitle has-text-grey-light">
+                        Hire for talent, not cost<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
                     
-                    <p class="subtitle">Weeknote<br>2021-02-19</p>
-                    
-                    
-                    <p>The bottom line this week is that it&#39;s hard to fit everything in to the time available to me.</p>
-                    <p class="mt-3"><a href="/read/2021-02-19.html">read more ...</a></p>
+                    <p><p>A few reflections on the various ways of building development team capacity, from hiring freelancers or an agency to hiring staff. Based on my experiences working in bootstrapped startups and as a freelancer - this is...</p>
+                    <p class="mt-3"><a href="/read/building_a_team.html">read more ...</a></p>
                 </article>
                 
-                <article class="column is-5 box m-3">
-                    <h1 class="title">An Instaplan</h1>
+                
+                <article class="column is-4 box m-3">
+                    <h1 class="title has-text-primary">Certification and data protection</h1>
 
+                    <p class="subtitle has-text-grey-light">
+                        Tedious box ticking or vital back-covering<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
                     
-                    <p class="subtitle">2021-02-15</p>
-                    
-                    
-                    <p>Instagram is (as we all know) not just about the numbers. But, if the point of posting things to a platform is for other people to see them, then the more people that see those things the better. It follows that the more followers I have, the...</p>
-                    <p class="mt-3"><a href="/read/instagram.html">read more ...</a></p>
+                    <p><p>NOTE: This is based on UK experience ... it may not apply in other places. It is also not legal advice and you should not reply on it!</p></p>
+                    <p class="mt-3"><a href="/read/certification_and_data.html">read more ...</a></p>
                 </article>
                 
+                
                 <article class="column is-5 box m-3">
-                    <h1 class="title">Bye bye shopify</h1>
+                    <h1 class="title has-text-primary">Customers and requirements</h1>
 
+                    <p class="subtitle has-text-grey-light">
+                        It takes less time than you think<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
                     
-                    <p class="subtitle">Weeknote<br>2021-02-12</p>
+                    <p><p>Over the years, I have become more and more convinced of the business and technical sense of co-deigning new products and features with input from customers (or potential customers). Often known as design sprints, Google Ventures has published detailed guidance on how they carry out the process. It's well worth reading.</p></p>
+                    <p class="mt-3"><a href="/read/customers_and_requirements.html">read more ...</a></p>
+                </article>
+                
+                
+                <article class="column is-5 box m-3">
+                    <h1 class="title has-text-primary">Plan to throw one away</h1>
+
+                    <p class="subtitle has-text-grey-light">
+                        (You will anyway)<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
                     
+                    <p><p>Fred Brooks, in his 1975 book "The Mythical Man Month" makes a lot of sensible points that are still true today (albeit the gendered writing could do with an overhaul). On the subject of estimation, he suggests planning to throw the first version of software away ... the grounds that you'll probably bin it anyway, so you might as well plan for it. With the caveat...</p>
+                    <p class="mt-3"><a href="/read/make_one_to_throw_away.html">read more ...</a></p>
+                </article>
+                
+                
+                <article class="column is-4 box m-3">
+                    <h1 class="title has-text-primary">Refactor for simplicity</h1>
+
+                    <p class="subtitle has-text-grey-light">
+                        By simplicity, I mostly mean readability<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
                     
-                    <p>I spent days setting up a shopify site, but almost immediately it felt wrong and its time to move on. Don&#39;t get me wrong - it&#39;s a really impressive system and I reckon I&#39;ll be back at some point, but it doesn&#39;t work for me right now.</p>
-                    <p class="mt-3"><a href="/read/2021-02-12.html">read more ...</a></p>
+                    <p><p>For those that aren't familiar, <strong>refactoring</strong> is like tidying up your code. It’s the process of restructuring existing code without changing its external behaviour. The goal is to make your code simpler, cleaner, and more readable. This can have a huge impact on the...</p>
+                    <p class="mt-3"><a href="/read/refactor_for_simplicity.html">read more ...</a></p>
+                </article>
+                
+                
+                <article class="column is-5 box m-3">
+                    <h1 class="title has-text-primary">Testing</h1>
+
+                    <p class="subtitle has-text-grey-light">
+                        You can have too much of a good thing<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
+                    
+                    <p><p>Before any code goes into production, a set of automated tests should be written and those tests should all pass. Where appropriate (e.g. front-end changes) there should also be a manual check that things work as expected. Where code interacts with existing code or the data layer, the tests for those should also all pass. If the tests are no longer relevant, they...</p>
+                    <p class="mt-3"><a href="/read/testing_and_load_testing.html">read more ...</a></p>
+                </article>
+                
+                
+                <article class="column is-3 box m-3">
+                    <h1 class="title has-text-primary">When things go wrong</h1>
+
+                    <p class="subtitle has-text-grey-light">
+                        An opportunity to impress, or cut your losses<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
+                    
+                    <p><p>In any business, things sometimes go wrong. You should of course try to prevent this, but in the real world sh*t happens. It's often a stressful time for the technical team and for anyone in a customer facing role. It...</p>
+                    <p class="mt-3"><a href="/read/when_things_go_wrong.html">read more ...</a></p>
+                </article>
+                
+                
+                <article class="column is-5 box m-3">
+                    <h1 class="title has-text-primary">YAGNI</h1>
+
+                    <p class="subtitle has-text-grey-light">
+                        You ain&#39;t gonna need it<br>
+                    </p>
+                    <p class="subtitle has-text-grey-light"></p>
+                    
+                    <p><p>Developers like developing things. More specifically, they like developing new things. Left to their own devices, developers have a tendency to build many more things than is strictly necessary, to handle every conceivable use case and weird edge condition.</p></p>
+                    <p class="mt-3"><a href="/read/YAGNI.html">read more ...</a></p>
                 </article>
                 
             </div>
@@ -168,34 +257,26 @@
               <p>
                 This site is mostly coded by hand, by me.</p> 
                 <p>But life is too short to solve the complexities of flexbox and form layout, so I'm using Bulma - a lightweight framework by <a href="https://jgthms.com" class="has-text-grey has-text-weight-semibold">Jeremy Thomas</a>. The source code uses the
-                <a href="http://opensource.org/licenses/mit-license.php" class="has-text-grey has-text-weight-semibold">MIT</a> licence. The website content, including images, are copyright me.
+                <a href="http://opensource.org/licenses/mit-license.php" class="has-text-grey has-text-weight-semibold">MIT</a> licence. SVG icons are from <a href="https://fontawesome.com/" class="has-text-grey has-text-weight-semibold">fontawesome</a> and <a class="has-text-grey has-text-weight-semibold" href="https://icons.getbootstrap.com/">Bootstrap</a>.
               </p>
-              <p>&copy; 2021 Dan Hartropp</p>
+              <p>&copy; 2024 Dan Hartropp</p>
             </div>
           </div>
           <div class="column"></div>
-          <div class="column">
-            <p class="title has-text-light">Newsletter</p>
-            <p class="subtitle has-text-light">Seriously, you're missing out on loads of good stuff.</p>
-            <form name="newsLetterFooterForm" class="pt-4" data-netlify="true">
-              <div class="field is-grouped">
-                <div class="control is-expanded">
-                  <input class="input" type="email" name="email" type="email" placeholder="put your email address here">
-                  <p class="help is-danger errorMessage is-hidden">That's not a valid email address</p>
-                </div>
-                <div class="control">
-                  <button class="button is-primary">sign up</button>
-                </div>
-              </div>
-            </form>
-          </div>
-
         </div>
         <div class="content has-text-centered has-text-light">
           
           <div class="pt-6">
-            <a href="https://www.instagram.com/danhartropp/"><img src="/static/img/ig-logo-white.svg" alt="Find me on Instagram" width="36" height="36"></a>
-            <a href="https://www.facebook.com/DanHartroppArt/"><img src="/static/img/fb-logo-white.svg" alt="Find me on facebook" width="36" height="36"></a>
+            <a class="px-1 is-color-grey" href="https://www.instagram.com/danhartropp/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+              </svg>
+            </a>
+            <a class="px-1 is-color-grey" href="https://www.linkedin.com/in/dan-hartropp-432082ba/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+              </svg>
+            </a>
           </div>
           
           
