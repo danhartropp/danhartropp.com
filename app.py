@@ -1,12 +1,10 @@
 import os
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for
 import frontmatter
 import markdown
 from datetime import datetime
 
 app = Flask(__name__, static_folder='static')
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.config['DEBUG'] = True
 
 def get_posts():
     posts = os.listdir('content/read/')
@@ -56,7 +54,6 @@ def look_index():
 
 @app.route('/look/<path:path>')
 def art(path):
-
     #first check whether we want an index page 
     if path.split('/')[-1] == 'index.html':
         arts = get_arts(path.split('/')[0])
@@ -71,12 +68,6 @@ def art(path):
 
 @app.route("/robots.txt")
 def robots_txt():
-    lines = [
-        'User-agent: *',
-        'Allow: /',
-        'Disallow: /contact*',
-        'Sitemap: https://www.danhartropp.com/sitemap.xml'
-    ]
-    return '\n'.join(lines), 200, {'Content-Type': 'text/plain; charset=utf-8'}
+    return render_template('robots.txt'), 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 
