@@ -24,7 +24,6 @@ def get_posts():
     return parsed_posts
 
 def get_arts(path):
-    print (path)
     art_files = os.listdir('content/look/' + path)
     art_files = [x for x in art_files if x != 'index.md']
     arts = [frontmatter.load('content/look/' + path + '/' + art) for art in art_files]
@@ -32,20 +31,13 @@ def get_arts(path):
         art['url'] = url_for('art', path=path + '/' + art_files[idx].replace('.md','.html'))
     return arts
 
-@app.route('/')
+@app.route('/index.html')
 def index():
-    featured_posts = get_posts()[:2]
-    featured_piece = frontmatter.load('content/featured_piece.md')
-    featured_piece.content = markdown.markdown(featured_piece.content)
-    return render_template('index.html', featured_posts=featured_posts, featured_piece=featured_piece)
+    return render_template('index.html')
 
 @app.route('/contact.html')
 def contact():
     return render_template('contact.html')
-
-@app.route('/read/')
-def read_redirect():
-    return redirect(url_for('read_index'))
 
 @app.route('/read/index.html')
 def read_index():
@@ -76,4 +68,15 @@ def art(path):
     art = frontmatter.load('content/look/' + path.replace('.html','.md'))
     art.content = markdown.markdown(art.content)
     return render_template('art.html',art=art)
+
+@app.route("/robots.txt")
+def robots_txt():
+    lines = [
+        'User-agent: *',
+        'Allow: /',
+        'Disallow: /contact*',
+        'Sitemap: https://www.example.com/sitemap.xml'
+    ]
+    return '\n'.join(lines), 200, {'Content-Type': 'text/plain; charset=utf-8'}
+
 

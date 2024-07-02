@@ -127,11 +127,13 @@
 <main id="maincontent">
     <section>
         
-        <div class="container is-widescreen">
+        <div class="container is-widescreen has-background-light pt-6">
             <div class="columns is-centered my-6">
-                <div class="column is-8 has-text-centered pb-6">
+                <div class="column is-8 has-text-centered py-6">
                     <h1 class="title has-text-primary">Some thoughts</h1>
-                    <p class="subtitle">In no particular order</p>
+                    <p class="subtitle has-text-grey-light">
+                        In no particular order
+                    </p>
                     <p>Some thoughts loosely based on the theme of technical management in a startup environment. Don't take any of this as hard-and-fast advice - it's based on my personal experience and comes with the caveats that implies. </p>
                 </div>
             </div>
@@ -156,11 +158,11 @@
                     <h1 class="title has-text-primary">Certification and data protection</h1>
 
                     <p class="subtitle has-text-grey-light">
-                        Tedious box ticking or vital back-covering<br>
+                        Tedious box ticking or vital back-covering?<br>
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>NOTE: This is based on UK experience ... it may not apply in other places. It is also not legal advice and you should not reply on it!</p></p>
+                    <p><p>Aside from internal documentation (which is very important) there are two main kinds of documentation that require attention from the tech lead in a startuppy environment.</p></p>
                     <p class="mt-3"><a href="/read/certification_and_data.html">read more ...</a></p>
                 </article>
                 
@@ -173,12 +175,12 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>Over the years, I have become more and more convinced of the business and technical sense of co-deigning new products and features with input from customers (or potential customers). Often known as design sprints, Google Ventures has published detailed guidance on how they carry out the process. It's well worth reading.</p></p>
+                    <p><p>Over the years, I have become more and more convinced of the business and technical sense of co-designing new products and features with input from customers (or potential customers). Often known as design sprints, Google Ventures has published detailed guidance on how they carry out the process. It's well worth reading.</p></p>
                     <p class="mt-3"><a href="/read/customers_and_requirements.html">read more ...</a></p>
                 </article>
                 
                 
-                <article class="column is-5 box m-3">
+                <article class="column is-4 box m-3">
                     <h1 class="title has-text-primary">Plan to throw one away</h1>
 
                     <p class="subtitle has-text-grey-light">
@@ -186,12 +188,12 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>Fred Brooks, in his 1975 book "The Mythical Man Month" makes a lot of sensible points that are still true today (albeit the gendered writing could do with an overhaul). On the subject of estimation, he suggests planning to throw the first version of software away ... the grounds that you'll probably bin it anyway, so you might as well plan for it. With the caveat...</p>
+                    <p><p>Fred Brooks, in his 1975 book "The Mythical Man Month" makes a lot of sensible points that are still true today (albeit some of writing is quite gendered and could do with an overhaul). On the subject of estimation, he suggests planning to throw the first version of software away ... on the...</p>
                     <p class="mt-3"><a href="/read/make_one_to_throw_away.html">read more ...</a></p>
                 </article>
                 
                 
-                <article class="column is-4 box m-3">
+                <article class="column is-3 box m-3">
                     <h1 class="title has-text-primary">Refactor for simplicity</h1>
 
                     <p class="subtitle has-text-grey-light">
@@ -199,7 +201,7 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>For those that aren't familiar, <strong>refactoring</strong> is like tidying up your code. It’s the process of restructuring existing code without changing its external behaviour. The goal is to make your code simpler, cleaner, and more readable. This can have a huge impact on the...</p>
+                    <p><p>For those that aren't familiar, <strong>refactoring</strong> is like tidying up your code. It’s the process of restructuring existing code without changing its external behaviour. The goal is to make your code simpler,...</p>
                     <p class="mt-3"><a href="/read/refactor_for_simplicity.html">read more ...</a></p>
                 </article>
                 
@@ -212,12 +214,12 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>Before any code goes into production, a set of automated tests should be written and those tests should all pass. Where appropriate (e.g. front-end changes) there should also be a manual check that things work as expected. Where code interacts with existing code or the data layer, the tests for those should also all pass. If the tests are no longer relevant, they...</p>
+                    <p><p>Before any code goes into production, a set of automated tests should be written and those tests should all pass. Where appropriate (e.g. front-end changes) there should also be a manual check that things work as expected and look right on a range of screen sizes. Where code interacts with existing code or the data layer, the tests for those should also all pass. If...</p>
                     <p class="mt-3"><a href="/read/testing_and_load_testing.html">read more ...</a></p>
                 </article>
                 
                 
-                <article class="column is-3 box m-3">
+                <article class="column is-4 box m-3">
                     <h1 class="title has-text-primary">When things go wrong</h1>
 
                     <p class="subtitle has-text-grey-light">
@@ -225,7 +227,7 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>In any business, things sometimes go wrong. You should of course try to prevent this, but in the real world sh*t happens. It's often a stressful time for the technical team and for anyone in a customer facing role. It...</p>
+                    <p><p>In any business, things sometimes go wrong. You should of course try to prevent this, but in the real world sh*t happens. It's often a stressful time for the technical team and for anyone in a customer facing role. It helps to remember that most people (at least in a B2B setting) have been on...</p>
                     <p class="mt-3"><a href="/read/when_things_go_wrong.html">read more ...</a></p>
                 </article>
                 
@@ -238,7 +240,7 @@
                     </p>
                     <p class="subtitle has-text-grey-light"></p>
                     
-                    <p><p>Developers like developing things. More specifically, they like developing new things. Left to their own devices, developers have a tendency to build many more things than is strictly necessary, to handle every conceivable use case and weird edge condition.</p></p>
+                    <p><p>Developers like developing things. More specifically, they like developing new things. Left to their own devices, developers have a tendency to build many more things than is strictly necessary, in ways that are more complex than needed, in order to handle every conceivable use case and weird edge condition.</p></p>
                     <p class="mt-3"><a href="/read/YAGNI.html">read more ...</a></p>
                 </article>
                 
@@ -256,7 +258,7 @@
             <div class="content has-text-grey">
               <p>
                 This site is mostly coded by hand, by me.</p> 
-                <p>But life is too short to solve the complexities of flexbox and form layout, so I'm using Bulma - a lightweight framework by <a href="https://jgthms.com" class="has-text-grey has-text-weight-semibold">Jeremy Thomas</a>. The source code uses the
+                <p>To speed things along I'm using Bulma - a lightweight framework by <a href="https://jgthms.com" class="has-text-grey has-text-weight-semibold">Jeremy Thomas</a>. The source code uses the
                 <a href="http://opensource.org/licenses/mit-license.php" class="has-text-grey has-text-weight-semibold">MIT</a> licence. SVG icons are from <a href="https://fontawesome.com/" class="has-text-grey has-text-weight-semibold">fontawesome</a> and <a class="has-text-grey has-text-weight-semibold" href="https://icons.getbootstrap.com/">Bootstrap</a>.
               </p>
               <p>&copy; 2024 Dan Hartropp</p>
