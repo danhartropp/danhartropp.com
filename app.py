@@ -75,7 +75,7 @@ def robots_txt():
         'User-agent: *',
         'Allow: /',
         'Disallow: /contact*',
-        'Sitemap: https://www.example.com/sitemap.xml'
+        'Sitemap: https://www.danhartropp.com/sitemap.xml'
     ]
     return '\n'.join(lines), 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
