@@ -1,14 +1,14 @@
 ---
 title: Certification and data protection
-subtitle: Tedious box ticking or vital back-covering
+subtitle: Tedious box ticking or vital back-covering?
 date:
 ---
 
-NOTE: This is based on UK experience ... it may not apply in other places. It is also not legal advice and you should not reply on it!
-
 Aside from internal documentation (which is very important) there are two main kinds of documentation that require attention from the tech lead in a startuppy environment.
 
-The first is what I'll loosely call "quality certification". These are only likely to be of interest to B2B firms - and even then only if you're selling to serious corporate/enterprise outfits with dedicated purchasing departments. At the top end (and unlikely to be relevant for a startup) are the ISO accreditations e.g. ISO 9001 (Quality) and ISO 27001 (Data Security). There are also a raft of certifications you can get that designed to reassure potential clients that you'll be careful with their data. These include things like "Cyber Essentials" (applicable for most firms) and PCI-DSS(relevant for those handling credit card details).
+NOTE: This is based on UK experience ... it may not apply in other places. It is also not legal advice and you should not reply on it!
+
+The first kind of documentation is what I'll loosely call "quality certification". These are only likely to be of interest to B2B firms - and even then only if you're selling to serious corporate/enterprise outfits with dedicated purchasing departments. At the top end (and unlikely to be relevant for a startup) are the ISO accreditations e.g. ISO 9001 (Quality) and ISO 27001 (Data Security). There are also a raft of certifications you can get that designed to reassure potential clients that you'll be careful with their data. These include things like "Cyber Essentials" (applicable for most firms) and PCI-DSS(relevant for those handling credit card details).
 
 I'm not a fintech expert, but if you're handling card payments you should work out for yourself which bits of PCI-DSS apply to you and what you should do about it - it looks like a total pain and probably something you should just outsource to <a href="https://stripe.com/gb/guides/pci-compliance">stripe</a>.
 
