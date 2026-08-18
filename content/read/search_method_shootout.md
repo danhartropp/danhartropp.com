@@ -3,7 +3,7 @@ title: Search method shootout
 subtitle: using a benchmark on a specific task
 date: 2026-08-10
 ---
-*Second of three posts. [Part 1](/read/careful_design_beats_clever_tools.html) covered building an honest benchmark honest enough to trust. This post is the reference companion: each retrieval method in turn — how it works, where it came from, what it typically scores in the literature, how we implemented it, and how it did on our data.*  
+*Second of three posts. [Part 1](/read/careful_design_beats_clever_tools.html) covered building an honest benchmark honest enough to trust. This post is the reference companion: each retrieval method in turn - how it works, where it came from, what it typically scores in the literature, how I implemented it, and how it did on our data. Fair warning ... it's quite a boring post.*  
 
 ---
 
@@ -91,7 +91,7 @@ A note on the numbers: Results quoted below are MRR@10 on the benchmark set of U
 
 **Typical results.** Frontier API embedders (Gemini, OpenAI `text-embedding-3-large`, Voyage, Cohere) top the public leaderboards, above every open sub-1B model.
 
-**Implementation notes.** I called it on Vertex AI, batch endpoint, at **$0.075 per million tokens** (batch). Encoding the entire benchmark (271k documents plus the query sets, \~50M tokens) cost **under $4**. Two things you *cannot* do, though, and both matter: you cannot **fine-tune** it (it's a black box), and every document you encode **leaves your infrastructure** for a US API.
+**Implementation notes.** I called it on Vertex AI, batch endpoint, at **$0.075 per million tokens** (batch). Encoding the entire benchmark (271k documents plus the query sets, ~50M tokens) cost **under $4**. Two things you *cannot* do, though, and both matter: you cannot **fine-tune** it (it's a black box), and every document you encode **leaves your infrastructure** for a US API.
 
 The fine-tuning thing took me down a bit of a dead end. Since the Gemini model is frozen and closed, one option is a small **projection head**: take Gemini's 3072-vector and train a little network on our question→answer pairs to reshape it toward our domain. It **did nothing** - 0.803 with the head versus 0.802 raw. But this could be an interesting technique for “translating” between embedding models … project them all into the same embedding space using a trained adapter and you can swap the backend model. Normally you’re stuck with the one you started with, which creates risk if the model is discontinued etc. 
 
@@ -104,9 +104,9 @@ The fine-tuning thing took me down a bit of a dead end. Since the Gemini model i
 | Hybrid (tuned dense + BM25) | **0.82** | \[0.81–0.84\] |
 | Dense, fine-tuned (jina) | **0.81** | \[0.80–0.83\] |
 | **Frontier API (Gemini)** | **0.80** | \[0.79–0.81\] |
-| Dense, off-the-shelf | **0.74** | \[0.72–0.75\] |
+| Dense, off-the-shelf | 0.74 | \[0.72–0.75\] |
 | SPLADE (learned sparse) | 0.58 | \[0.57–0.60\] |
 | BM25 (keyword) | 0.56 | \[0.54–0.57\] |
 | RM3 (query expansion) | 0.50 | \[0.48–0.51\] |
 
-So, we have two methods that are basically tied at ~0.8. Which one to pick depends on what the production workload looks like. If you’ve got enough documents coming in through the day to keep a small GPU spinning then the fine-tuned local model works out pretty cheap and you get to own the model itself with no upstream dependencies … but you do have to manage infrastructure. If your workload is lumpy, or you just want an easy life, then the API route is likely to be the clear winner. 
+So, we have two methods that are basically tied at ~0.8 (ignoring hybrid, which added nothing over fine-tuned). Which one to pick depends on what the production workload looks like. If you’ve got enough documents coming in through the day to keep a small GPU spinning then the fine-tuned local model works out pretty cheap and you get to own the model itself with no upstream dependencies … but you do have to manage infrastructure. If your workload is lumpy, or you just want an easy life, then the API route is likely to be the clear winner. 
