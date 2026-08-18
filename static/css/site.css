@@ -137,6 +137,14 @@ main { display: block; min-height: 60vh; }
 .card h2 a { color: var(--ink); }
 .card p { color: var(--muted); margin: 0; }
 
+/* --- section intros ----------------------------------------------------- */
+
+.intro-centred { text-align: center; }
+/* bullets and quote rules read badly ragged-centre, so keep them left */
+.intro-centred .prose ul,
+.intro-centred .prose ol,
+.intro-centred .prose blockquote { text-align: left; }
+
 /* --- post lists --------------------------------------------------------- */
 
 .list { display: grid; gap: 1.25rem; margin: 2.5rem 0; }
@@ -187,12 +195,6 @@ main { display: block; min-height: 60vh; }
 .post-nav { margin: 2.5rem 0; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
 
 /* --- art ---------------------------------------------------------------- */
-
-.intro-centred { text-align: center; }
-/* bullets and quote rules read badly ragged-centre, so keep them left */
-.intro-centred .prose ul,
-.intro-centred .prose ol,
-.intro-centred .prose blockquote { text-align: left; }
 
 
 .series-list { display: grid; gap: 1.25rem; margin: 2.5rem 0; }
