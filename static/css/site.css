@@ -197,6 +197,23 @@ main { display: block; min-height: 60vh; }
 .prose pre code { background: none; padding: 0; }
 .prose img { margin: 1.5rem 0; border-radius: var(--radius); }
 
+.prose table {
+  width: 100%; border-collapse: collapse;
+  margin: 0 0 1.15rem; font-size: .95rem;
+}
+.prose th, .prose td {
+  padding: .5rem .6rem; text-align: left;
+  border-bottom: 1px solid var(--rule);
+}
+.prose thead th { border-bottom: 2px solid var(--rule); }
+.prose tbody tr:last-child td { border-bottom: none; }
+/* alignment comes from the markdown's :---- markers, which Python-Markdown
+   emits as inline styles -- a rule here could not override them anyway */
+/* narrow screens: let the table scroll rather than the whole page */
+@media (max-width: 600px) {
+  .prose table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
 .post-nav { margin: 2.5rem 0; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
 
 /* --- art ---------------------------------------------------------------- */

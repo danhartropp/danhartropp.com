@@ -12,10 +12,19 @@ SITE_TITLE = 'Dan Hartropp'
 SITE_TAGLINE = 'Tech pragmatist, sometime startup CTO and once-upon-a-time digital artist.'
 
 
+# Python-Markdown enables almost nothing by default. Without these, pipe
+# tables and fenced code blocks render as literal text in the page.
+MARKDOWN_EXTENSIONS = ['tables', 'fenced_code']
+
+
+def render_markdown(text):
+    return markdown.markdown(text, extensions=MARKDOWN_EXTENSIONS)
+
+
 def load_section(name):
     """A section's heading and intro live in content/<name>/index.md."""
     section = frontmatter.load(os.path.join('content', name, 'index.md'))
-    section.content = markdown.markdown(section.content)
+    section.content = render_markdown(section.content)
     return section
 
 
@@ -29,7 +38,7 @@ def get_posts(name):
         post = frontmatter.load(os.path.join(directory, filename))
         post['section'] = name
         post['url'] = '/%s/%s.html' % (name, filename[:-3])
-        post.content = markdown.markdown(post.content)
+        post.content = render_markdown(post.content)
         if 'excerpt' not in post.keys():
             post['excerpt'] = post.content.split('\n')[0]
         posts.append(post)
@@ -64,7 +73,7 @@ def all_posts():
 
 def render_post(name, slug):
     post = frontmatter.load(os.path.join('content', name, slug + '.md'))
-    post.content = markdown.markdown(post.content)
+    post.content = render_markdown(post.content)
     return render_template('post.html', section=name, meta=load_section(name),
                            post=post,
                            canonical='/%s/%s.html' % (name, slug))
@@ -142,13 +151,13 @@ def art(path):
     if path.split('/')[-1] == 'index.html':
         arts = get_arts(path.split('/')[0])
         series = frontmatter.load('content/look/' + path.replace('.html', '.md'))
-        series.content = markdown.markdown(series.content)
+        series.content = render_markdown(series.content)
         return render_template('look_series.html', section='look', series=series,
                                arts=arts, canonical=url_for('art', path=path))
 
     # Or whether we're looking for an individual piece page
     art = frontmatter.load('content/look/' + path.replace('.html', '.md'))
-    art.content = markdown.markdown(art.content)
+    art.content = render_markdown(art.content)
     return render_template('art.html', section='look', art=art,
                            canonical=url_for('art', path=path))
 
