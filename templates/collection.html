@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% set page_title = meta.heading %}
+{% set description = meta.description %}
+
+{% block content %}
+<main id="maincontent">
+  <section class="section">
+    <div class="narrow">
+      <h1>{{ meta.heading }}</h1>
+      <p class="lede">{{ meta.strapline }}</p>
+      <p>{{ meta.intro }}</p>
+      <p><a href="/{{ section }}/feed.xml">Subscribe by RSS</a></p>
+    </div>
+
+    <div class="wrap">
+      {% if posts %}
+      <div class="list">
+        {% for post in posts %}
+        <article class="entry">
+          <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+          {% if post.subtitle %}<p class="entry-sub">{{ post.subtitle }}</p>{% endif %}
+          {% if post.date %}<p class="entry-meta"><time datetime="{{ post.date }}">{{ post.date | longdate }}</time></p>{% endif %}
+          <p>{{ post.excerpt | striptags | truncate(260) }}</p>
+          <p><a href="{{ post.url }}">read more &rarr;</a></p>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="list">
+        <p class="empty">{{ meta.empty }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}

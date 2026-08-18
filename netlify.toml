@@ -1,0 +1,18 @@
+[build]
+  command = "python freeze.py"
+  publish = "build"
+
+[build.environment]
+  PYTHON_VERSION = "3.8"
+
+# Long-lived caching for fingerprint-free static assets is not safe here,
+# so keep it modest and let HTML always revalidate.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

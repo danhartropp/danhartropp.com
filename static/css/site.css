@@ -1,0 +1,230 @@
+/* ---------------------------------------------------------------------------
+   danhartropp.com
+   Hand-rolled stylesheet, derived from Bulma by Jeremy Thomas (https://jgthms.com)
+   Bulma is MIT licensed; its colour palette, spacing scale and typographic
+   rhythm are the basis for what follows. The framework itself is not used.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --ink:        #363636;
+  --muted:      #6b6b6b;
+  --accent:     #00d1b2;   /* Bulma primary */
+  --accent-ink: #00806e;   /* darkened for AA contrast on white */
+  --bg:         #ffffff;
+  --panel:      #f7f7f7;
+  --rule:       #e4e4e4;
+  --dark:       #0a0a0a;
+
+  --measure: 42rem;
+  --wide:    72rem;
+  --radius:  6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; margin: 0 0 .5em; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+/* --- layout ------------------------------------------------------------- */
+
+.wrap   { max-width: var(--wide);    margin: 0 auto; padding: 0 1.25rem; }
+.narrow { max-width: var(--measure); margin: 0 auto; padding: 0 1.25rem; }
+
+main { display: block; min-height: 60vh; }
+
+.section { padding: 3rem 0; }
+
+.skip-link {
+  position: absolute; top: -3rem; left: 0; z-index: 100;
+  background: var(--dark); color: #fff; padding: .5rem .75rem;
+}
+.skip-link:focus { top: 0; }
+
+/* --- nav ---------------------------------------------------------------- */
+
+.nav {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 30;
+}
+.nav-inner {
+  max-width: var(--wide); margin: 0 auto; padding: .75rem 1.25rem;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.nav-brand {
+  font-size: 1.35rem; font-weight: 700; letter-spacing: .02em;
+  color: var(--accent-ink); margin-right: auto;
+}
+.nav-brand:hover { text-decoration: none; }
+
+.nav-links { display: flex; gap: .25rem; align-items: center; }
+.nav-links a {
+  padding: .4rem .7rem; border-radius: var(--radius);
+  color: var(--accent-ink); font-size: 1.05rem;
+}
+.nav-links a:hover { background: var(--panel); text-decoration: none; }
+.nav-links a[aria-current="page"] { font-weight: 700; background: var(--panel); }
+
+/* zero-JS disclosure: checkbox toggle, kept keyboard reachable */
+.nav-toggle {
+  position: absolute; width: 1px; height: 1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+.nav-burger { display: none; cursor: pointer; padding: .5rem; }
+.nav-burger span {
+  display: block; width: 22px; height: 2px; margin: 4px 0;
+  background: var(--accent-ink);
+}
+.nav-toggle:focus-visible + .nav-burger { outline: 2px solid var(--accent-ink); }
+
+@media (max-width: 700px) {
+  .nav-burger { display: block; order: 3; }
+  .nav-links {
+    display: none; order: 4; width: 100%;
+    flex-direction: column; align-items: stretch; padding-bottom: .5rem;
+  }
+  .nav-toggle:checked ~ .nav-links { display: flex; }
+}
+
+/* --- hero --------------------------------------------------------------- */
+
+.hero {
+  background-size: cover; background-position: center;
+  padding: 6rem 1.25rem; text-align: center;
+}
+.hero p { margin: .6rem 0; }
+.hero .plate {
+  background: var(--dark); color: #fff;
+  padding: .25rem .6rem; display: inline-block;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.hero .plate-title    { font-size: 2rem;   font-weight: 700; }
+.hero .plate-subtitle { font-size: 1.25rem; }
+
+/* --- cards -------------------------------------------------------------- */
+
+.cards {
+  display: grid; gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: 3rem 0;
+}
+.card { text-align: center; }
+.card-icon {
+  width: 8rem; height: 8rem; margin: 0 auto 1.25rem;
+  color: var(--accent); border-radius: 999px;
+  background-size: cover; background-position: center;
+}
+.card-icon svg { width: 100%; height: 100%; fill: currentColor; }
+.card h2 { font-size: 1.5rem; margin-bottom: .35rem; }
+.card h2 a { color: var(--ink); }
+.card p { color: var(--muted); margin: 0; }
+
+/* --- post lists --------------------------------------------------------- */
+
+.list { display: grid; gap: 1.25rem; margin: 2.5rem 0; }
+.entry {
+  background: var(--bg); border: 1px solid var(--rule);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.entry h2 { font-size: 1.4rem; margin-bottom: .2rem; }
+.entry h2 a { color: var(--accent-ink); }
+.entry-sub { color: var(--muted); margin: 0 0 .75rem; }
+.entry-meta { color: var(--muted); font-size: .9rem; }
+.entry p:last-child { margin-bottom: 0; }
+
+.lede { color: var(--muted); font-size: 1.15rem; }
+
+.empty {
+  border: 1px dashed var(--rule); border-radius: var(--radius);
+  padding: 2.5rem; text-align: center; color: var(--muted);
+}
+
+/* --- article ------------------------------------------------------------ */
+
+.post-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+.post-header h1 { color: var(--accent-ink); margin-bottom: .25rem; }
+.post-header .sub { color: var(--muted); font-size: 1.15rem; margin: 0 0 .5rem; }
+.post-header time { color: var(--muted); font-size: .9rem; }
+
+.prose h1, .prose h2 { margin-top: 2rem; }
+.prose h3, .prose h4 { margin-top: 1.5rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1.15rem; }
+.prose ul, .prose ol { padding-left: 1.5rem; }
+.prose li { margin-bottom: .35rem; }
+.prose blockquote {
+  margin: 1.5rem 0; padding: .5rem 0 .5rem 1.25rem;
+  border-left: 3px solid var(--accent); color: var(--muted);
+}
+.prose code {
+  background: var(--panel); padding: .1em .35em;
+  border-radius: 3px; font-size: .9em;
+}
+.prose pre {
+  background: var(--panel); padding: 1rem;
+  border-radius: var(--radius); overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; }
+.prose img { margin: 1.5rem 0; border-radius: var(--radius); }
+
+.post-nav { margin: 2.5rem 0; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+
+/* --- art ---------------------------------------------------------------- */
+
+.series-list { display: grid; gap: 1.25rem; margin: 2.5rem 0; }
+.series {
+  position: relative; min-height: 11rem; display: flex;
+  flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem; border-radius: var(--radius);
+  background-size: cover; background-position: center;
+}
+.series h2, .series p { margin: 0 0 .4rem; }
+.series .plate {
+  background: var(--dark); color: #fff;
+  padding: .15rem .5rem; display: inline-block;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.series a::after { content: ""; position: absolute; inset: 0; }
+
+.gallery {
+  display: grid; gap: 1.5rem; margin: 2.5rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+.piece { text-align: center; }
+.piece h2 { font-size: 1.2rem; margin: .6rem 0 0; }
+
+/* --- footer ------------------------------------------------------------- */
+
+.footer {
+  background: var(--dark); color: #b5b5b5;
+  margin-top: 4rem; padding: 3rem 0;
+  font-size: .9rem;
+}
+.footer a { color: #dbdbdb; text-decoration: underline; }
+.footer-cols {
+  display: grid; gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.footer h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: #dbdbdb; }
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: .3rem; }
+.social { display: flex; gap: .75rem; margin-top: .5rem; }
+.social a { display: block; width: 28px; height: 28px; color: #b5b5b5; }
+.social svg { width: 100%; height: 100%; fill: currentColor; }

@@ -1,0 +1,56 @@
+---
+title: Careful design beats clever tools
+subtitle: building a benchmark you can actually trust
+date: 2026-08-01
+---
+*This is the first in a series of posts about improving search results using a real-world scenario. Inevitably, as it’s written in 2026, it’s also a bit about the process of using LLMs. This part covers the work that underpins the rest - getting a solid benchmark. Later parts will include a comparison of various information retrieval methods and how to verify the system remains accurate in production.* 
+
+---
+
+Let’s start with a little background. This series is about implementing a really good (and really practical) information retrieval system from the ground up. I’ve based it in the context of the political monitoring industry, because that’s what I know best. In the monitoring world, really good search (retrieval) basically **is** the product, so it literally pays to be good at it. 
+
+There are lots of ways to search for and retrieve information, so how can we know which among them is really good? One approach is vibe checking - just look at some results and get a sense of how good they are. In a way this is the only real test, because ultimately it’s the user’s sense of what’s good that matters. But this approach is hard to optimise against and it doesn’t scale well. So we need a benchmark. 
+
+This post is all about constructing that benchmark. There are a lot of posts online that put search methods head to head to see which is the best (spoiler alert: it’s usually a hybrid approach), but they tend to use established datasets, which mean they have a pre-ordained “right” answer. That’s not an option in the real world on a greenfield project, so we’re going to spend some time (much more time than I expected when I started this) creating a benchmark we can use to judge how effective various retrieval methods are. 
+
+For those who just want the headline: even with a large, clean, public dataset that was almost ideal for the task, getting to a trustworthy scoreboard cost me **about £50 of cloud compute, several rounds of human grading over a few days, and a dozen analytical reruns**. Modern agentic AI made all of this dramatically faster and easier to build. When I started this project, I did wonder whether a frontier LLM would be a good enough judge to replace the benchmark stage altogether. It was not. If anything, using agentic LLMs made having a reliable, domain-relevant, benchmark even more important. 
+
+## The test bed 
+
+The UK Parliament has the concept of Parliamentary Questions: MPs ask government ministers questions and the official answers are published. It's a public dataset, it's large (hundreds of thousands of question-answer pairs), and it comes in three flavours that conveniently span a difficulty range: written questions (formal, often sharing wording with their answers), oral questions (scripted questions and answers that are read aloud), and supplementary questions (the conversational and more ad-hoc follow-ups, where question and answer can look nothing alike). At a high level, our task is to search a large pool of possible answers and find the one that was actually used for a given question.
+
+## The test set
+
+There are some general \[anti\]patterns that apply to experiments in general and machine learning/information-retrieval projects in particular … 
+
+**Leakage.** Official answers tend to restate the question, which makes plain keyword search look really good … but is it *finding the answer* or just *echoing the question's words back*? This is usually seen as a type of overfitting, where the technique is designed (or trained) to work really well on a specific set of data, but it’s really using shortcuts within that data to boost performance. But in our particular case, I’m calling this a feature not a bug. Some of the strongest clues about which answer goes with which question come from matching specific terms between the two. In many cases the name of the constituency is the *only* thing that changes between otherwise identical answers.  
+
+**Tuning on the test.** A common silent mistake: adjust settings while watching the test score and you're no longer measuring quality, you're fitting to the test's quirks. The more complex a method, the more knobs it will have you can adjust and the more it will benefit from being tuned to the test set. The solution is simple (but quite hard to be disciplined about): only ever optimise on the training set, then use the test set to see whether it generalises.  In this case, I also split the training and test sets by time: an earlier slice to tune on, a later slice to test on, after every setting was frozen. This mimics what happens in real life. You develop on yesterday’s data, in production you see tomorrow’s (and you hope they are similar).  
+
+**Memorisation.** Modern embedding models are trained on huge amounts of the public web - almost certainly including our publicly available source. This means the model itself may have already seen our test set date and would perform well until we started using data it hadn’t seen. To avoid this, I chose a test that was not only strictly after the cutoff for our training set, but also after the training cutoff date for the base model itself.  I also cross-checked results with keyword methods, retraining from scratch each time to avoid pollution.
+
+The "**right answer**". The nice thing about this dataset (and the main reason I chose it) is that each question has exactly one official answer that we’re trying to find. But in a haystack of hundreds of thousands of answers, there may be other documents that genuinely answer the question too and a search method should not be punished for finding those answers. Which means I needed a way to find those answers too, so I could judge the method properly. The difficulty here is that finding those answers is exactly the problem we’re trying to solve in the first place. Getting around that turned out to be (by far) the most time consuming part of setting up the benchmark. 
+
+## What is the right answer anyway?
+
+To know whether the retrieved result *genuinely* answers a question, someone has to look at it and make an assessment. I didn’t love the idea of hand-verifying thousands of examples from the test set and these days using an LLM as a judge is often seen as a valid solution. It’s very easy to just ask the LLM “Is this a valid answer to the following question …” and accept the result. I’ve seen people do it. But I’m trying to keep at least a thin veneer of scientific method to all this, so I did a quick test. The result was disastrous and I disagreed with the LLM’s judgment about half the time. But the nice thing about LLMs is that they can be calibrated.  
+
+The solution was to get a long list of possible answers for a selection of questions and hand-grade them myself. At the risk of skipping ahead to part 2, running all of the retrieval methods across the test set generated a set of answers which were a) not the official “correct” answer but b) were selected by at least two different methods. I hand-graded 300 of these, which was a boring and tedious process but much less boring and tedious than doing tens of thousands would have been. A few rounds of trying different models and prompt-tweaking and the LLM was agreeing with me about 80% of the time. Which perhaps doesn’t seem great but … 
+
+I also re-checked 100 of the answers a few days later and found that I only agreed with myself about 80% of the time too. It turns out there are loads of answers that are basically a coin-flip as to whether they answer the question or not. In effect, this means the LLM agrees with me as often as I agree with myself, which is as good a result as we’re ever going to get. The LLM then processed 76,000 judgements for about the price of a London takeaway and now I’ve got a large and validated test set that I can use to judge the performance of retrieval techniques. 
+
+There are two key points here. First, **an AI judge is a force multiplier, not an oracle**. It’s good at heavy lifting, but you have to keep a close eye on it and verify what it’s doing (more on that in part 4). Second, **if your benchmark comes from human judgment, it’s important to cross-check it to establish an upper limit** on what’s actually possible. If your benchmark comes from trusting an LLM without checking, there's a good chance you're doing it wrong. 
+
+## Where the AI helped, and where a human was needed
+
+This project was built with an agentic AI assistant doing a great deal of the hands-on work, so it's worth being precise about the division of labour, not least because I learned some lessons there.
+
+**The AI was genuinely strong at:** writing and rewiring the data pipeline and evaluation harness; running dozens of analyses on request; scaling the relevance judgement once it was calibrated; and *diagnosing* anomalies *when it was pointed at them* ("this number looks wrong, find out why"). Ultimately, it compressed weeks of coding into days and much of that was done in the background while I got on with other things. 
+
+**A human was required for:** the ground-truth grading (and re-grading) that set the upper limit.I was also needed to keep the LLM going when it would otherwise have stopped.Right now (2026) there are definitely practical limits on the ability of agentic LLMs to reason, particularly over longer horizons and larger problem spaces. The LLM was just as quick to decide that we’d reached a dead end and should abandon the project as it was to take a result at face value and declare success. Equally confidently in both cases. 
+
+**Unhelpful filters:** A large number (about 5% of the test set) of written questions are follow-ups of the form *"pursuant to the answer of 6 January to Question 101310, was the representation written or oral?"* Claude suggested (and to be fair, my intuition agreed) that, because these reference an unseen answer, they can’t be understood in isolation and therefore should be filtered out. Claude built a filter, tested it and declared the whole thing to be a massive success. Then I actually looked at some examples. Most were perfectly understandable. The question restates its topic and the official answer addresses it, at least to some extent. I suspect this lands right at the edge of what today’s LLMs can reason about … the theory was sound but didn’t actually hold true in reality, despite the LLM convincing itself that it did.  
+
+**Claude is really bad at:** Estimating. Many, many examples of this but the most obvious are around how much time it takes to write code. What is predicted to be “a week’s work” is often done in about 10 minutes. Some more specific examples: a batching optimisation would give a 4-7x speed-up, but when measured it actually gave none (the workload was memory-bound, not compute-bound). On one occasion Claude silently revised an estimate to match observations .. an old-school word-vector baseline was scoring suspiciously low and Claude was happy to report that it was in line with expectations. When prompted to explore, it was clear there was a bug in the pipeline. 
+
+The main takeaway for me is to always inspect the data and never trust an assertion that matters. **Validate everything by looking at the data yourself.**   

@@ -1,19 +1,24 @@
 {% extends "base.html" %}
+{% set page_title = post.title %}
+{% set description = post.subtitle or meta.description %}
+{% set og_type = 'article' %}
+
 {% block content %}
-        
 <main id="maincontent">
-  <section class="has-background-light">
-    <div class="container is-max-desktop pt-6">
-      <div class="box mt-6">
-        <h1 class="title has-text-primary">{{post.title}}</h1>
-        <h2 class="subtitle has-text-primary">{{post.subtitle or ''}}</h2>
-        <h3 class="subtitle">{{post.date or ''}}</h3>
-        <div class="content">{{post.content|safe}}</div>
-      </div>
+  <article class="section">
+    <div class="narrow">
+      <header class="post-header">
+        <h1>{{ post.title }}</h1>
+        {% if post.subtitle %}<p class="sub">{{ post.subtitle }}</p>{% endif %}
+        {% if post.date %}<time datetime="{{ post.date }}">{{ post.date | longdate }}</time>{% endif %}
+      </header>
+
+      <div class="prose">{{ post.content | safe }}</div>
+
+      <nav class="post-nav">
+        <a href="/{{ collection }}/index.html">&larr; back to {{ meta.heading | lower }}</a>
+      </nav>
     </div>
-    <div class="container is-max-desktop">
-      <p><a href="/read/index.html"><-- return to index</a></p>
-    </div>
-  </section>
+  </article>
 </main>
-{%endblock%}
+{% endblock %}

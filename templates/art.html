@@ -1,20 +1,19 @@
 {% extends "base.html" %}
+{% set page_title = art.name %}
+{% set description = art.name ~ ' — hand-coded digital art by Dan Hartropp.' %}
+{% set og_image = '/static/img/art/' + art.image %}
+
 {% block content %}
-
 <main id="maincontent">
-    <section>
-        <div class="container is-widescreen">
-            <div class="columns is-multiline">
-                <article class="column box">
-                    <h1 class="title is-2 has-text-centered mb-1">{{art.name}}</h1>
-                    <figure class="image">
-                        <img src="/static/img/art/{{art.image}}">
-                    </figure>
-                </article>
-            </div>
-        </div>
-    </section>
-  </main>
-
-
-{%endblock%}
+  <section class="section">
+    <div class="narrow">
+      <h1 style="text-align:center">{{ art.name }}</h1>
+      <figure style="margin:0">
+        <img src="/static/img/art/{{ art.image }}" alt="{{ art.name }}">
+      </figure>
+      {% if art.content %}<div class="prose">{{ art.content | safe }}</div>{% endif %}
+      <p class="post-nav"><a href="/look/index.html">&larr; back to art things</a></p>
+    </div>
+  </section>
+</main>
+{% endblock %}
