@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% set page_title = 'Art things' %}
 {% set description = 'Archived art stuff, mostly from 2020.' %}
-{% set og_image = '/static/img/linear_thinking.jpg' %}
+{% set og_image = '/static/img/linear_thinking.webp' %}
 
 {% block content %}
 <main id="maincontent">
@@ -16,17 +16,17 @@
 
     <div class="wrap">
       <div class="series-list">
-        <article class="series" style="background-image: url('/static/img/linear_thinking.jpg');">
+        <article class="series" style="background-image: url('/static/img/linear_thinking.webp');">
           <h2><span class="plate"><a href="{{ url_for('art', path='linear-thinking/index.html') }}" style="color:#fff">Linear thinking</a></span></h2>
           <p><span class="plate">A collection of things made from lines.</span></p>
         </article>
 
-        <article class="series" style="background-image: url('/static/img/remastered.jpg');">
+        <article class="series" style="background-image: url('/static/img/remastered.webp');">
           <h2><span class="plate"><a href="{{ url_for('art', path='remastered/index.html') }}" style="color:#fff">Remastered</a></span></h2>
           <p><span class="plate">Standing on the shoulders of giants.</span></p>
         </article>
 
-        <article class="series" style="background-image: url('/static/img/barcodes.jpg');">
+        <article class="series" style="background-image: url('/static/img/barcodes-strip.webp');">
           <h2><span class="plate"><a href="{{ url_for('art', path='barcoded/index.html') }}" style="color:#fff">Barcoded</a></span></h2>
           <p><span class="plate">Standing on the shoulders of barcodes.</span></p>
         </article>
