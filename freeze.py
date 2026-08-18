@@ -58,7 +58,9 @@ def write_redirects():
     """Netlify _redirects, served from the publish root."""
     lines = ["# Aphorisms moved from /read/ to /code/ when /read/ became the AI section."]
     for slug in LEGACY_READ_SLUGS:
-        lines.append("/read/%s.html  /code/%s.html  301" % (slug, slug))
+        # .lower() because YAGNI.md was renamed to yagni.md: Netlify 301s
+        # mixed-case paths, so an uppercase target would cost a second hop.
+        lines.append("/read/%s.html  /code/%s.html  301" % (slug, slug.lower()))
     with open('build/_redirects', 'w') as handle:
         handle.write("\n".join(lines) + "\n")
     return len(LEGACY_READ_SLUGS)
