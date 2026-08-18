@@ -14,7 +14,11 @@
       <category>{{ post.section }}</category>
       {% if post.date %}<pubDate>{{ post.date | rfc822 }}</pubDate>{% endif %}
       <description>{{ post.subtitle or (post.excerpt | striptags | truncate(260)) }}</description>
-      <content:encoded><![CDATA[{{ post.content }}]]></content:encoded>
+      <!-- Flask autoescapes .xml templates, so this is entity-escaped on the way
+           out and decoded by the reader's XML parser. Do not wrap it in CDATA:
+           CDATA is literal, the entities would survive it and readers would show
+           the tags as text. -->
+      <content:encoded>{{ post.content }}</content:encoded>
     </item>
     {% endfor %}
   </channel>
