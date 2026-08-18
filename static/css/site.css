@@ -132,7 +132,11 @@ main { display: block; min-height: 60vh; }
   color: var(--accent); border-radius: 999px;
   background-size: cover; background-position: center;
 }
-.card-icon svg { width: 100%; height: 100%; fill: currentColor; }
+.card-icon svg { width: 100%; height: 100%; }
+/* a CSS fill here would beat each icon's fill="none" attribute and close
+   the open strokes, so let the markup decide */
+.card-icon .badge { fill: var(--accent-ink); }
+.card-icon .badge-text { fill: #fff; }
 .card h2 { font-size: 1.5rem; margin-bottom: .35rem; }
 .card h2 a { color: var(--ink); }
 .card p { color: var(--muted); margin: 0; }
