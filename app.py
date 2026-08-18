@@ -27,6 +27,7 @@ def get_posts(name):
         if not filename.endswith('.md') or filename == 'index.md':
             continue
         post = frontmatter.load(os.path.join(directory, filename))
+        post['section'] = name
         post['url'] = '/%s/%s.html' % (name, filename[:-3])
         post.content = markdown.markdown(post.content)
         if 'excerpt' not in post.keys():
@@ -53,10 +54,12 @@ def render_index(name):
                            canonical='/%s/index.html' % name)
 
 
-def render_feed(name):
-    xml = render_template('feed.xml', section=name, meta=load_section(name),
-                          posts=get_posts(name)[:20], site_url=SITE_URL)
-    return Response(xml, mimetype='application/rss+xml')
+def all_posts():
+    """Every post from every section, newest first."""
+    posts = get_posts('read') + get_posts('code')
+    today = date.today()
+    posts.sort(key=lambda p: p['date'] or today, reverse=True)
+    return posts
 
 
 def render_post(name, slug):
@@ -102,14 +105,15 @@ def contact():
     return render_template('contact.html', section='contact', canonical='/contact.html')
 
 
+@app.route('/feed.xml')
+def feed():
+    xml = render_template('feed.xml', posts=all_posts()[:20])
+    return Response(xml, mimetype='application/rss+xml')
+
+
 @app.route('/read/index.html')
 def read_index():
     return render_index('read')
-
-
-@app.route('/read/feed.xml')
-def read_feed():
-    return render_feed('read')
 
 
 @app.route('/read/<slug>.html')
@@ -120,11 +124,6 @@ def read_post(slug):
 @app.route('/code/index.html')
 def code_index():
     return render_index('code')
-
-
-@app.route('/code/feed.xml')
-def code_feed():
-    return render_feed('code')
 
 
 @app.route('/code/<slug>.html')
