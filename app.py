@@ -11,50 +11,23 @@ SITE_URL = 'https://www.danhartropp.com'
 SITE_TITLE = 'Dan Hartropp'
 SITE_TAGLINE = 'Tech pragmatist, sometime startup CTO and once-upon-a-time digital artist.'
 
-# Every writing section on the site. Adding one is a folder in content/ plus an
-# entry here; the index page, RSS feed and sitemap entries all follow from it.
-COLLECTIONS = {
-    'read': {
-        'nav': 'read',
-        'heading': 'Applied AI',
-        'strapline': 'Notes from actually building the things',
-        'description': 'Writing about applied AI — what works, what does not, '
-                       'and what it costs to find out.',
-        'intro': 'Practical notes on building with AI: what held up in production, '
-                 'what quietly fell over, and the bits nobody puts in the demo.',
-        'empty': 'Nothing published here yet. The first pieces are on their way — '
-                 'the feed is live if you would rather be told than remember to check.',
-    },
-    'code': {
-        'nav': 'code',
-        'heading': 'Some thoughts',
-        'strapline': 'In no particular order',
-        'description': "Some tech and startup lessons I've learned the hard way over the years.",
-        'intro': 'Some thoughts loosely based on the theme of technical management in a '
-                 "startup environment. Don't take any of this as hard-and-fast advice — "
-                 "it's based on my personal experience and comes with the caveats that implies.",
-        'empty': 'Nothing here yet.',
-    },
-}
 
-# Restrict the collection placeholder so these routes can never shadow /look/.
-COLLECTION_RULE = '<any(%s):collection>' % ','.join(COLLECTIONS)
+def load_section(name):
+    """A section's heading and intro live in content/<name>/index.md."""
+    section = frontmatter.load(os.path.join('content', name, 'index.md'))
+    section.content = markdown.markdown(section.content)
+    return section
 
 
-def _absolute(path):
-    return SITE_URL + path
-
-
-def get_posts(collection):
-    """Load, render and date-sort every post in a collection."""
-    directory = os.path.join('content', collection)
+def get_posts(name):
+    """Load, render and date-sort every post in a section."""
+    directory = os.path.join('content', name)
     posts = []
     for filename in sorted(os.listdir(directory)):
-        if not filename.endswith('.md'):
+        if not filename.endswith('.md') or filename == 'index.md':
             continue
         post = frontmatter.load(os.path.join(directory, filename))
-        post['slug'] = filename[:-3]
-        post['url'] = url_for('post', collection=collection, slug=post['slug'])
+        post['url'] = '/%s/%s.html' % (name, filename[:-3])
         post.content = markdown.markdown(post.content)
         if 'excerpt' not in post.keys():
             post['excerpt'] = post.content.split('\n')[0]
@@ -72,6 +45,26 @@ def get_arts(path):
     for idx, art in enumerate(arts):
         art['url'] = url_for('art', path=path + '/' + art_files[idx].replace('.md', '.html'))
     return arts
+
+
+def render_index(name):
+    return render_template('collection.html', section=name, meta=load_section(name),
+                           posts=get_posts(name),
+                           canonical='/%s/index.html' % name)
+
+
+def render_feed(name):
+    xml = render_template('feed.xml', section=name, meta=load_section(name),
+                          posts=get_posts(name)[:20], site_url=SITE_URL)
+    return Response(xml, mimetype='application/rss+xml')
+
+
+def render_post(name, slug):
+    post = frontmatter.load(os.path.join('content', name, slug + '.md'))
+    post.content = markdown.markdown(post.content)
+    return render_template('post.html', section=name, meta=load_section(name),
+                           post=post,
+                           canonical='/%s/%s.html' % (name, slug))
 
 
 @app.template_filter('rfc822')
@@ -92,7 +85,6 @@ def longdate(value):
 @app.context_processor
 def globals():
     return {
-        'collections': COLLECTIONS,
         'site_title': SITE_TITLE,
         'site_tagline': SITE_TAGLINE,
         'site_url': SITE_URL,
@@ -110,41 +102,34 @@ def contact():
     return render_template('contact.html', section='contact', canonical='/contact.html')
 
 
-@app.route('/%s/index.html' % COLLECTION_RULE)
-def collection_index(collection):
-    return render_template(
-        'collection.html',
-        section=collection,
-        meta=COLLECTIONS[collection],
-        posts=get_posts(collection),
-        canonical=url_for('collection_index', collection=collection),
-    )
+@app.route('/read/index.html')
+def read_index():
+    return render_index('read')
 
 
-@app.route('/%s/feed.xml' % COLLECTION_RULE)
-def collection_feed(collection):
-    xml = render_template(
-        'feed.xml',
-        collection=collection,
-        meta=COLLECTIONS[collection],
-        posts=get_posts(collection)[:20],
-        absolute=_absolute,
-    )
-    return Response(xml, mimetype='application/rss+xml')
+@app.route('/read/feed.xml')
+def read_feed():
+    return render_feed('read')
 
 
-@app.route('/%s/<slug>.html' % COLLECTION_RULE)
-def post(collection, slug):
-    post = frontmatter.load(os.path.join('content', collection, slug + '.md'))
-    post.content = markdown.markdown(post.content)
-    return render_template(
-        'post.html',
-        section=collection,
-        meta=COLLECTIONS[collection],
-        collection=collection,
-        post=post,
-        canonical=url_for('post', collection=collection, slug=slug),
-    )
+@app.route('/read/<slug>.html')
+def read_post(slug):
+    return render_post('read', slug)
+
+
+@app.route('/code/index.html')
+def code_index():
+    return render_index('code')
+
+
+@app.route('/code/feed.xml')
+def code_feed():
+    return render_feed('code')
+
+
+@app.route('/code/<slug>.html')
+def code_post(slug):
+    return render_post('code', slug)
 
 
 @app.route('/look/index.html')

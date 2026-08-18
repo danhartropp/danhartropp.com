@@ -20,9 +20,8 @@
     <meta property="og:image" content="{{ site_url }}{{ og_image }}">
     <meta name="twitter:card" content="summary_large_image">
 
-    {% for name, c in collections.items() %}
-    <link rel="alternate" type="application/rss+xml" title="{{ site_title }} &middot; {{ c.heading }}" href="/{{ name }}/feed.xml">
-    {% endfor %}
+    <link rel="alternate" type="application/rss+xml" title="{{ site_title }} &middot; read" href="/read/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="{{ site_title }} &middot; code" href="/code/feed.xml">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/static/ico/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/ico/favicon-32x32.png">
@@ -81,9 +80,8 @@
         <div>
           <h2>Subscribe</h2>
           <ul>
-            {% for name, c in collections.items() %}
-            <li><a href="/{{ name }}/feed.xml">{{ c.heading }} — RSS</a></li>
-            {% endfor %}
+            <li><a href="/read/feed.xml">read — RSS</a></li>
+            <li><a href="/code/feed.xml">code — RSS</a></li>
           </ul>
         </div>
 

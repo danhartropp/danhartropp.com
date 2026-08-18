@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% set page_title = meta.heading %}
+{% set page_title = meta.title %}
 {% set description = meta.description %}
 
 {% block content %}
 <main id="maincontent">
   <section class="section">
     <div class="narrow">
-      <h1>{{ meta.heading }}</h1>
-      <p class="lede">{{ meta.strapline }}</p>
-      <p>{{ meta.intro }}</p>
+      <h1>{{ meta.title }}</h1>
+      <p class="lede">{{ meta.subtitle }}</p>
+      <div class="prose">{{ meta.content | safe }}</div>
       <p><a href="/{{ section }}/feed.xml">Subscribe by RSS</a></p>
     </div>
 
@@ -27,7 +27,7 @@
       </div>
       {% else %}
       <div class="list">
-        <p class="empty">{{ meta.empty }}</p>
+        <p class="empty">Nothing published here yet.</p>
       </div>
       {% endif %}
     </div>

@@ -4,7 +4,7 @@ from xml.etree import ElementTree
 
 from flask_frozen import Freezer
 
-from app import app, COLLECTIONS
+from app import app
 
 BASE_URL = "https://www.danhartropp.com"
 
@@ -33,25 +33,25 @@ app.config['FREEZER_IGNORE_MIMETYPE_WARNINGS'] = True
 freezer = Freezer(app)
 
 
+def slugs(name):
+    """Post slugs in a section, ignoring its index.md."""
+    directory = os.path.join('content', name)
+    return [f[:-3] for f in sorted(os.listdir(directory))
+            if f.endswith('.md') and f != 'index.md']
+
+
+# The index and feed routes take no arguments, so Frozen-Flask finds them by
+# itself. Only the post routes need to be told what exists.
 @freezer.register_generator
-def collection_index():
-    for name in COLLECTIONS:
-        yield {'collection': name}
+def read_post():
+    for slug in slugs('read'):
+        yield {'slug': slug}
 
 
 @freezer.register_generator
-def collection_feed():
-    for name in COLLECTIONS:
-        yield {'collection': name}
-
-
-@freezer.register_generator
-def post():
-    for name in COLLECTIONS:
-        directory = os.path.join('content', name)
-        for filename in sorted(os.listdir(directory)):
-            if filename.endswith('.md'):
-                yield {'collection': name, 'slug': filename[:-3]}
+def code_post():
+    for slug in slugs('code'):
+        yield {'slug': slug}
 
 
 def write_redirects():
