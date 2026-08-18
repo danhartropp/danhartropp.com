@@ -3,7 +3,7 @@
   publish = "build"
 
 [build.environment]
-  PYTHON_VERSION = "3.8"
+  PYTHON_VERSION = "3.12"
 
 # Long-lived caching for fingerprint-free static assets is not safe here,
 # so keep it modest and let HTML always revalidate.

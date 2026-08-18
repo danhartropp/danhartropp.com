@@ -1,4 +1,4 @@
-Flask
-Frozen-Flask
-Markdown
-python-frontmatter
+Flask==3.1.3
+Frozen-Flask==1.0.2
+Markdown==3.10.3
+python-frontmatter==1.3.0
