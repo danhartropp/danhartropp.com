@@ -10,6 +10,7 @@
   --muted:      #6b6b6b;
   --accent:     #00d1b2;   /* Bulma primary */
   --accent-ink: #00806e;   /* darkened for AA contrast on white */
+  --accent-deep:#00695c;   /* deeper still, for large filled shapes */
   --bg:         #ffffff;
   --panel:      #f7f7f7;
   --rule:       #e4e4e4;
@@ -129,13 +130,13 @@ main { display: block; min-height: 60vh; }
 .card { text-align: center; }
 .card-icon {
   width: 8rem; height: 8rem; margin: 0 auto 1.25rem;
-  color: var(--accent); border-radius: 999px;
+  color: var(--accent-ink); border-radius: 999px;
   background-size: cover; background-position: center;
 }
 .card-icon svg { width: 100%; height: 100%; }
 /* a CSS fill here would beat each icon's fill="none" attribute and close
    the open strokes, so let the markup decide */
-.card-icon .badge { fill: var(--accent-ink); }
+.card-icon .badge { fill: var(--accent-deep); }
 .card-icon .badge-line { stroke: #fff; }
 .card h2 { font-size: 1.5rem; margin-bottom: .35rem; }
 .card h2 a { color: var(--ink); }
