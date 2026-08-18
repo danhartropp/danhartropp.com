@@ -188,6 +188,13 @@ main { display: block; min-height: 60vh; }
 
 /* --- art ---------------------------------------------------------------- */
 
+.intro-centred { text-align: center; }
+/* bullets and quote rules read badly ragged-centre, so keep them left */
+.intro-centred .prose ul,
+.intro-centred .prose ol,
+.intro-centred .prose blockquote { text-align: left; }
+
+
 .series-list { display: grid; gap: 1.25rem; margin: 2.5rem 0; }
 .series {
   position: relative; min-height: 11rem; display: flex;
