@@ -136,7 +136,7 @@ main { display: block; min-height: 60vh; }
 /* a CSS fill here would beat each icon's fill="none" attribute and close
    the open strokes, so let the markup decide */
 .card-icon .badge { fill: var(--accent-ink); }
-.card-icon .badge-text { fill: #fff; }
+.card-icon .badge-line { stroke: #fff; }
 .card h2 { font-size: 1.5rem; margin-bottom: .35rem; }
 .card h2 a { color: var(--ink); }
 .card p { color: var(--muted); margin: 0; }
