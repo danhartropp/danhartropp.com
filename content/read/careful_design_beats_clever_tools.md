@@ -39,7 +39,7 @@ The solution was to get a long list of possible answers for a selection of quest
 
 I also re-checked 100 of the answers a few days later and found that I only agreed with myself about 80% of the time too. It turns out there are loads of answers that are basically a coin-flip as to whether they answer the question or not. In effect, this means the LLM agrees with me as often as I agree with myself, which is as good a result as we’re ever going to get. The LLM then processed 76,000 judgements for about the price of a London takeaway and now I’ve got a large and validated test set that I can use to judge the performance of retrieval techniques. 
 
-There are two key points here. First, **an AI judge is a force multiplier, not an oracle**. It’s good at heavy lifting, but you have to keep a close eye on it and verify what it’s doing (more on that in part 4). Second, **if your benchmark comes from human judgment, it’s important to cross-check it to establish an upper limit** on what’s actually possible. If your benchmark comes from trusting an LLM without checking, there's a good chance you're doing it wrong. 
+There are two key points here. First, **an AI judge is a force multiplier, not an oracle**. It’s good at heavy lifting, but you have to keep a close eye on it and verify what it’s doing (more on that in another post). Second, **if your benchmark comes from human judgment, it’s important to cross-check it to establish an upper limit** on what’s actually possible. If your benchmark comes from trusting an LLM without checking, there's a good chance you're doing it wrong. 
 
 ## Where the AI helped, and where a human was needed
 
